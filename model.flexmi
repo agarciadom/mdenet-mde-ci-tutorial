@@ -7,10 +7,9 @@ and transitions among them
     <state name="A"/>
     <state name="B"/>
     <state name="C"/>
-    <state name="DE"/>
+    <state name="D"/>
     <transition from="A" to="B"/>
     <transition from="B" to="C"/>
     <transition from="A" to="A"/>
-    <transition from="C" to="A"/>
     <transition from="C" to="A"/>
 </machine>
