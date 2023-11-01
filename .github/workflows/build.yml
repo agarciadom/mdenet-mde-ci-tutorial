@@ -13,9 +13,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: Run the Ant workflow
+      - name: Validate model
         uses: agarciadom/epsilon-ci-action@v1
         with:
-          build-file: build.xml
-          target: main
+          target: validate
+      - name: Transform to MiniJava
+        uses: agarciadom/epsilon-ci-action@v1
+        with:
+          target: transform
