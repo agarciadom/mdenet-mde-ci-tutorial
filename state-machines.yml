@@ -17,7 +17,7 @@ activities:
     - - panel-console
       - panel-mm
   panels:
-  - file: epsilon/validation-rules.evl
+  - file: epsilon/validate-state-machine.evl
     id: panel-evl
     name: Validation Rules (EVL)
     ref: evl

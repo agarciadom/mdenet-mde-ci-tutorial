@@ -1,17 +1,51 @@
 <project default="main">
-    <target name="main">
-        <!-- Load the model.flexmi EMF model -->
-        <epsilon.emf.loadModel name="M" modelfile="models/state-machine.flexmi" metamodelfile="metamodels/state-machines.emf" />
-        
-        <!-- Run program.evl against it -->
-        <epsilon.evl src="epsilon/validation-rules.evl">
-            <model ref="M" />
-        </epsilon.evl>
-        
-        <!-- Dispose of the model -->
-        <epsilon.disposeModel model="M"/>
 
-        <!-- Refresh the project to pick up any created or updated files -->
-    	<eclipse.refreshLocal resource="playground-example" depth="infinite"/>
-    </target>
+	<!-- CI Pipeline job entry point -->
+	<target name="main" depends="validate,transform">
+		<eclipse.refreshLocal resource="mdenet-mde-ci-tutorial" depth="infinite" />
+	</target>
+
+	<target name="validate">
+		<loadStateMachine />
+
+		<epsilon.evl src="epsilon/validate-state-machine.evl">
+			<model ref="StateMachine" />
+		</epsilon.evl>
+
+		<epsilon.disposeModel model="StateMachine" />
+	</target>
+
+	<target name="transform">
+		<loadStateMachine />
+		<loadMiniJava read="false" store="true" />
+
+		<epsilon.etl src="epsilon/state-to-javam.etl">
+			<model ref="StateMachine" as="Source" />
+			<model ref="MiniJava" as="Target" />
+		</epsilon.etl>
+
+		<epsilon.disposeModel model="StateMachine" />
+		<epsilon.disposeModel model="MiniJava" />
+	</target>
+
+	<macrodef name="loadStateMachine">
+		<sequential>
+			<epsilon.emf.loadModel name="StateMachine"
+				modelfile="models/state-machine.flexmi"
+				metamodelfile="metamodels/state-machines.emf"
+				read="true" store="false" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="loadMiniJava">
+		<attribute name="read" />
+		<attribute name="store" />
+		<sequential>
+			<epsilon.emf.loadModel name="MiniJava"
+				modelfile="models/state-machine-java.xmi"
+				metamodelfile="metamodels/mini-java.emf"
+				read="@{read}" store="@{store}" />
+		</sequential>
+	</macrodef>
+
 </project>
