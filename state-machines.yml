@@ -8,7 +8,7 @@ activities:
     source: panel-evl
     sourceButton: action-button
   icon: evl
-  id: activity-evl
+  id: evl
   layout:
     area:
     - - panel-evl
