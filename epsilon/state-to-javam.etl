@@ -1,0 +1,6 @@
+rule StateMachine2JavaClass
+  transform sm : Source!StateMachine
+  to jc : Target!JavaClass
+{
+  jc.name = sm.name;
+}

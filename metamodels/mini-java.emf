@@ -1,0 +1,6 @@
+@namespace(uri="miniJava", prefix="")
+package miniJava;
+
+class JavaClass {
+    attr String name;
+}

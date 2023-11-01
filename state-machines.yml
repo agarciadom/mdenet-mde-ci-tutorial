@@ -39,3 +39,49 @@ activities:
   tools:
   - http://127.0.0.1:8070/epsilon_tool.json
   - http://127.0.0.1:8071/emfatic_tool.json
+- actions:
+  - output: panel-tmodel
+    parameters:
+      emfatic: panel-smm
+      flexmi: panel-smodel
+      program: panel-etl
+      secondEmfatic: panel-tmm
+    source: panel-etl
+    sourceButton: action-button
+  icon: etl
+  id: etl
+  layout:
+    area:
+    - - panel-etl
+      - panel-smodel
+      - panel-tmodel
+    - - panel-console
+      - panel-smm
+      - panel-tmm
+  panels:
+  - file: epsilon/state-to-javam.etl
+    id: panel-etl
+    name: State Machine to Java (ETL)
+    ref: etl
+  - file: models/state-machine.flexmi
+    id: panel-smodel
+    name: Source Model
+    ref: flexmi
+  - file: metamodels/state-machines.emf
+    id: panel-smm
+    name: Source Metamodel
+    ref: emfatic
+  - file: metamodels/mini-java.emf
+    id: panel-tmm
+    name: Target Metamodel
+    ref: emfatic
+  - id: panel-tmodel
+    name: Transformation Result
+    ref: emfgraph
+  - id: panel-console
+    name: Console
+    ref: console
+  title: Transform to MiniJava
+  tools:
+  - http://127.0.0.1:8070/epsilon_tool.json
+  - http://127.0.0.1:8071/emfatic_tool.json
