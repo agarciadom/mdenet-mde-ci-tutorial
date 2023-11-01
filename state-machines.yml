@@ -1,0 +1,37 @@
+activities:
+- actions:
+  - output: panel-console
+    parameters:
+      emfatic: panel-mm
+      flexmi: panel-model
+      program: panel-evl
+    source: panel-evl
+    sourceButton: action-button
+  icon: evl
+  id: activity-evl
+  layout:
+    area:
+    - - panel-evl
+      - panel-model
+    - - panel-console
+      - panel-mm
+  panels:
+  - file: program.evl
+    id: panel-evl
+    name: Program (EVL)
+    ref: evl
+  - file: model.flexmi
+    id: panel-model
+    name: Model
+    ref: flexmi
+  - file: metamodel.emf
+    id: panel-mm
+    name: Metamodel
+    ref: emfatic
+  - id: panel-console
+    name: Console
+    ref: console
+  title: Validate State Machine
+  tools:
+  - http://127.0.0.1:8070/epsilon_tool.json
+  - http://127.0.0.1:8071/emfatic_tool.json
