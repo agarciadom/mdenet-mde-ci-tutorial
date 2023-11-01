@@ -1,10 +1,10 @@
 <project default="main">
     <target name="main">
         <!-- Load the model.flexmi EMF model -->
-        <epsilon.emf.loadModel name="M" modelfile="model.flexmi" metamodelfile="metamodel.emf" />
+        <epsilon.emf.loadModel name="M" modelfile="models/state-machine.flexmi" metamodelfile="metamodels/state-machines.emf" />
         
         <!-- Run program.evl against it -->
-        <epsilon.evl src="program.evl">
+        <epsilon.evl src="epsilon/validation-rules.evl">
             <model ref="M" />
         </epsilon.evl>
         

@@ -17,17 +17,17 @@ activities:
     - - panel-console
       - panel-mm
   panels:
-  - file: program.evl
+  - file: epsilon/validation-rules.evl
     id: panel-evl
-    name: Program (EVL)
+    name: Validation Rules (EVL)
     ref: evl
-  - file: model.flexmi
+  - file: models/state-machine.flexmi
     id: panel-model
-    name: Model
+    name: State Machine Model (Flexmi)
     ref: flexmi
-  - file: metamodel.emf
+  - file: metamodels/state-machines.emf
     id: panel-mm
-    name: Metamodel
+    name: Metamodel (Emfatic)
     ref: emfatic
   - id: panel-console
     name: Console
