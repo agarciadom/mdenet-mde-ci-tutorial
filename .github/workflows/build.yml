@@ -21,3 +21,7 @@ jobs:
         uses: agarciadom/epsilon-ci-action@v1
         with:
           target: transform
+      - name: Generate Java
+        uses: agarciadom/epsilon-ci-action@v1
+        with:
+          target: generate
