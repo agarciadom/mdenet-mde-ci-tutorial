@@ -1,6 +1,6 @@
 activities:
 - actions:
-  - output: panel-console
+  - output: panel-problems
     parameters:
       emfatic: panel-mm
       flexmi: panel-model
@@ -13,6 +13,7 @@ activities:
     area:
     - - panel-evl
       - panel-model
+      - panel-problems
     - - panel-console
       - panel-mm
   panels:
@@ -31,6 +32,9 @@ activities:
   - id: panel-console
     name: Console
     ref: console
+  - id: panel-problems
+    name: Problems
+    ref: problem
   title: Validate State Machine
   tools:
   - http://127.0.0.1:8070/epsilon_tool.json
