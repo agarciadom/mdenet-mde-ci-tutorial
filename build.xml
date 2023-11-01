@@ -1,7 +1,7 @@
 <project default="main">
 
 	<!-- CI Pipeline job entry point -->
-	<target name="main" depends="validate,transform">
+	<target name="main" depends="validate,transform,generate">
 		<eclipse.refreshLocal resource="mdenet-mde-ci-tutorial" depth="infinite" />
 	</target>
 
@@ -25,6 +25,16 @@
 		</epsilon.etl>
 
 		<epsilon.disposeModel model="StateMachine" />
+		<epsilon.disposeModel model="MiniJava" />
+	</target>
+
+	<target name="generate">
+		<loadMiniJava read="true" store="false" />
+
+		<epsilon.egl src="epsilon/minijava-to-java.egl" target="Example.java">
+			<model ref="MiniJava" />
+		</epsilon.egl>
+
 		<epsilon.disposeModel model="MiniJava" />
 	</target>
 

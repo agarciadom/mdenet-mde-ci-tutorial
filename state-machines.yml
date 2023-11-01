@@ -85,3 +85,44 @@ activities:
   tools:
   - http://127.0.0.1:8070/epsilon_tool.json
   - http://127.0.0.1:8071/emfatic_tool.json
+- actions:
+  - output: panel-output
+    outputType: code
+    parameters:
+      emfatic: panel-smm
+      flexmi: panel-smodel
+      program: panel-egl
+    source: panel-egl
+    sourceButton: action-button
+  icon: egl
+  id: egl
+  layout:
+    area:
+    - - panel-egl
+      - panel-smodel
+      - panel-output
+    - - panel-console
+      - panel-smm
+  panels:
+  - file: epsilon/minijava-to-java.egl
+    id: panel-egl
+    name: MiniJava to Java (EGL)
+    ref: egl
+  - file: models/minijava-example.flexmi
+    id: panel-smodel
+    name: Source Model
+    ref: flexmi
+  - file: metamodels/mini-java.emf
+    id: panel-smm
+    name: Source Metamodel
+    ref: emfatic
+  - id: panel-output
+    name: Generated Code
+    ref: code
+  - id: panel-console
+    name: Console
+    ref: console
+  title: Generate Java Code
+  tools:
+  - http://127.0.0.1:8070/epsilon_tool.json
+  - http://127.0.0.1:8071/emfatic_tool.json
