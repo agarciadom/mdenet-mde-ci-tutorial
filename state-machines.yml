@@ -7,6 +7,17 @@ activities:
       program: panel-evl
     source: panel-evl
     sourceButton: action-button
+  - output: panel-diagram
+    parameters:
+      emfatic: panel-mm
+      flexmi: panel-model
+    source: panel-model
+    sourceButton: refresh-button
+  - output: panel-diagram
+    parameters:
+      emfatic: panel-mm
+    source: panel-mm
+    sourceButton: refresh-button
   icon: evl
   id: evl
   layout:
@@ -16,6 +27,7 @@ activities:
       - panel-problems
     - - panel-console
       - panel-mm
+      - panel-diagram
   panels:
   - file: epsilon/validate-state-machine.evl
     id: panel-evl
@@ -35,10 +47,12 @@ activities:
   - id: panel-problems
     name: Problems
     ref: problem
+  - id: panel-diagram
+    name: Metamodel / Model Diagram
+    ref: emfgraph
   title: Validate State Machine
   tools:
-  - http://127.0.0.1:8070/epsilon_tool.json
-  - http://127.0.0.1:8071/emfatic_tool.json
+  - http://127.0.0.1:8010/tools
 - actions:
   - output: panel-tmodel
     parameters:
@@ -48,6 +62,22 @@ activities:
       secondEmfatic: panel-tmm
     source: panel-etl
     sourceButton: action-button
+  - output: panel-tmodel
+    parameters:
+      emfatic: panel-smm
+    source: panel-smm
+    sourceButton: refresh-button
+  - output: panel-tmodel
+    parameters:
+      emfatic: panel-tmm
+    source: panel-tmm
+    sourceButton: refresh-button
+  - output: panel-tmodel
+    parameters:
+      emfatic: panel-smm
+      flexmi: panel-smodel
+    source: panel-smodel
+    sourceButton: refresh-button
   icon: etl
   id: etl
   layout:
@@ -76,15 +106,14 @@ activities:
     name: Target Metamodel
     ref: emfatic
   - id: panel-tmodel
-    name: Transformation Result
+    name: Metamodel / Model Diagram
     ref: emfgraph
   - id: panel-console
     name: Console
     ref: console
   title: Transform to MiniJava
   tools:
-  - http://127.0.0.1:8070/epsilon_tool.json
-  - http://127.0.0.1:8071/emfatic_tool.json
+  - http://127.0.0.1:8010/tools
 - actions:
   - output: panel-output
     outputType: code
@@ -94,6 +123,17 @@ activities:
       program: panel-egl
     source: panel-egl
     sourceButton: action-button
+  - output: panel-diagram
+    parameters:
+      emfatic: panel-smm
+      flexmi: panel-smodel
+    source: panel-smodel
+    sourceButton: refresh-button
+  - output: panel-diagram
+    parameters:
+      emfatic: panel-smm
+    source: panel-smm
+    sourceButton: refresh-button
   icon: egl
   id: egl
   layout:
@@ -103,6 +143,7 @@ activities:
       - panel-output
     - - panel-console
       - panel-smm
+      - panel-diagram
   panels:
   - file: epsilon/minijava-to-java.egl
     id: panel-egl
@@ -122,7 +163,9 @@ activities:
   - id: panel-console
     name: Console
     ref: console
+  - id: panel-diagram
+    name: Metamodel / Model Diagram
+    ref: emfgraph
   title: Generate Java Code
   tools:
-  - http://127.0.0.1:8070/epsilon_tool.json
-  - http://127.0.0.1:8071/emfatic_tool.json
+  - http://127.0.0.1:8010/tools
