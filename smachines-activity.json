@@ -19,7 +19,7 @@
               "flexmi": "panel-model"
             },
             "source": "panel-model",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           },
           {
             "output": "panel-diagram",
@@ -27,7 +27,7 @@
               "emfatic": "panel-mm"
             },
             "source": "panel-mm",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           }
         ],
         "icon": "evl",
@@ -105,7 +105,7 @@
               "emfatic": "panel-smm"
             },
             "source": "panel-smm",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           },
           {
             "output": "panel-tmodel",
@@ -113,7 +113,7 @@
               "emfatic": "panel-tmm"
             },
             "source": "panel-tmm",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           },
           {
             "output": "panel-tmodel",
@@ -122,7 +122,7 @@
               "flexmi": "panel-smodel"
             },
             "source": "panel-smodel",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           }
         ],
         "icon": "etl",
@@ -202,7 +202,7 @@
               "flexmi": "panel-smodel"
             },
             "source": "panel-smodel",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           },
           {
             "output": "panel-diagram",
@@ -210,7 +210,7 @@
               "emfatic": "panel-smm"
             },
             "source": "panel-smm",
-            "sourceButton": "refresh-button"
+            "sourceButton": "render-button"
           }
         ],
         "icon": "egl",
