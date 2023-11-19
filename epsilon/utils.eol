@@ -100,7 +100,7 @@ operation throwStatement(e: Target!Expression) {
 
 operation newInstance(type: String, arguments: Sequence) {
   var ni = new Target!NewInstance;
-  ni.type = type;
+  ni.type = typeReference(type);
   ni.arguments = arguments;
   return ni;
 }
@@ -125,7 +125,7 @@ operation stringConstant(s: String) {
 
 operation annotation(name: String, arguments: Sequence) {
   var ann = new Target!Annotation;
-  ann.name = name;
+  ann.type = typeReference(name);
   ann.arguments = arguments;
   return ann;
 }

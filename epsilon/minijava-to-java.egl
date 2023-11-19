@@ -32,7 +32,7 @@ operation PropertyInvocation generate() {
 }
 
 operation Annotation generate() {
-  return '@' + self.name + (self.arguments.isEmpty() ? '' : '(' + self.arguments.collect(a|a.generate()).concat(', ') + ')');
+  return '@' + self.type.typeName + (self.arguments.isEmpty() ? '' : '(' + self.arguments.collect(a|a.generate()).concat(', ') + ')');
 }
 
 operation AnnotationArgument generate() {
@@ -45,7 +45,7 @@ operation LambdaExpression generate() {%]
 }
 
 operation VariableDeclaration generate() {
-  return self.type + ' ' + self.name + ' = ' + self.initializer.generate() + ';';
+  return self.type.typeName + ' ' + self.name + ' = ' + self.initializer.generate() + ';';
 } 
 
 operation ParameterReference generate() {
@@ -92,7 +92,7 @@ operation ThrowStatement generate() {
 
 @template
 operation NewInstance generate() {%]
-new [%=self.type%]([%=self.arguments.collect(a|a.generate()).concat(', ')%])[%
+new [%=self.type.typeName%]([%=self.arguments.collect(a|a.generate()).concat(', ')%])[%
 }
 
 operation LogicalNot generate() {

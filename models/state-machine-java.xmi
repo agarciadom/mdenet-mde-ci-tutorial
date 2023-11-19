@@ -15,13 +15,15 @@
             <context xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
           </operand>
         </condition>
-        <statements xsi:type="VariableDeclaration" type="char" name="c">
+        <statements xsi:type="VariableDeclaration" name="c">
+          <type typeName="char"/>
           <initializer xsi:type="MethodInvocation" methodByName="charAt">
             <context xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
             <arguments xsi:type="IntegerConstant"/>
           </initializer>
         </statements>
-        <statements xsi:type="VariableDeclaration" type="String" name="rest">
+        <statements xsi:type="VariableDeclaration" name="rest">
+          <type typeName="String"/>
           <initializer xsi:type="MethodInvocation" methodByName="substring">
             <context xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
             <arguments xsi:type="IntegerConstant" value="1"/>
@@ -38,7 +40,8 @@
           <statements xsi:type="ReturnStatement"/>
         </statements>
         <statements xsi:type="ThrowStatement">
-          <expression xsi:type="NewInstance" type="IllegalStateException">
+          <expression xsi:type="NewInstance">
+            <type typeName="IllegalStateException"/>
             <arguments xsi:type="MethodInvocation" methodByName="String.format">
               <arguments xsi:type="StringConstant" value="State &quot;FirstA&quot;: no valid outgoing transition for &quot;%s&quot;"/>
               <arguments xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
@@ -55,13 +58,15 @@
             <context xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
           </operand>
         </condition>
-        <statements xsi:type="VariableDeclaration" type="char" name="c">
+        <statements xsi:type="VariableDeclaration" name="c">
+          <type typeName="char"/>
           <initializer xsi:type="MethodInvocation" methodByName="charAt">
             <context xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
             <arguments xsi:type="IntegerConstant"/>
           </initializer>
         </statements>
-        <statements xsi:type="VariableDeclaration" type="String" name="rest">
+        <statements xsi:type="VariableDeclaration" name="rest">
+          <type typeName="String"/>
           <initializer xsi:type="MethodInvocation" methodByName="substring">
             <context xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
             <arguments xsi:type="IntegerConstant" value="1"/>
@@ -94,7 +99,8 @@
           <statements xsi:type="ReturnStatement"/>
         </statements>
         <statements xsi:type="ThrowStatement">
-          <expression xsi:type="NewInstance" type="IllegalStateException">
+          <expression xsi:type="NewInstance">
+            <type typeName="IllegalStateException"/>
             <arguments xsi:type="MethodInvocation" methodByName="String.format">
               <arguments xsi:type="StringConstant" value="State &quot;B&quot;: no valid outgoing transition for &quot;%s&quot;"/>
               <arguments xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
@@ -112,7 +118,8 @@
           </operand>
         </condition>
         <statements xsi:type="ThrowStatement">
-          <expression xsi:type="NewInstance" type="IllegalStateException">
+          <expression xsi:type="NewInstance">
+            <type typeName="IllegalStateException"/>
             <arguments xsi:type="MethodInvocation" methodByName="String.format">
               <arguments xsi:type="StringConstant" value="State &quot;LastA&quot;: no valid outgoing transition for &quot;%s&quot;"/>
               <arguments xsi:type="ParameterReference" param="/0/@methods.3/@parameters.0"/>
@@ -124,49 +131,71 @@
   </JavaClass>
   <JavaClass name="ABBAMachineTest" isTest="true">
     <methods name="acceptsA" visibility="PUBLIC">
-      <annotations name="org.junit.jupiter.api.Test"/>
+      <annotations>
+        <type typeName="org.junit.jupiter.api.Test"/>
+      </annotations>
       <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
-        <context xsi:type="NewInstance" type="ABBAMachine"/>
+        <context xsi:type="NewInstance">
+          <type typeName="ABBAMachine"/>
+        </context>
         <arguments xsi:type="StringConstant" value="A"/>
       </statements>
     </methods>
     <methods name="acceptsABA" visibility="PUBLIC">
-      <annotations name="org.junit.jupiter.api.Test"/>
+      <annotations>
+        <type typeName="org.junit.jupiter.api.Test"/>
+      </annotations>
       <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
-        <context xsi:type="NewInstance" type="ABBAMachine"/>
+        <context xsi:type="NewInstance">
+          <type typeName="ABBAMachine"/>
+        </context>
         <arguments xsi:type="StringConstant" value="ABA"/>
       </statements>
     </methods>
     <methods name="acceptsABZBA" visibility="PUBLIC">
-      <annotations name="org.junit.jupiter.api.Test"/>
+      <annotations>
+        <type typeName="org.junit.jupiter.api.Test"/>
+      </annotations>
       <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
-        <context xsi:type="NewInstance" type="ABBAMachine"/>
+        <context xsi:type="NewInstance">
+          <type typeName="ABBAMachine"/>
+        </context>
         <arguments xsi:type="StringConstant" value="ABZBA"/>
       </statements>
     </methods>
     <methods name="rejectsX" visibility="PUBLIC">
-      <annotations name="org.junit.jupiter.api.Test"/>
-      <statements xsi:type="MethodInvocation" methodByName="org.junit.jupiter.api.Assertions.assertThrows">
+      <annotations>
+        <type typeName="org.junit.jupiter.api.Test"/>
+      </annotations>
+      <statements xsi:type="MethodInvocation" methodByName="assertThrows">
+        <context xsi:type="TypeReference" typeName="org.junit.jupiter.api.Assertions"/>
         <arguments xsi:type="PropertyInvocation" propertyName="class">
           <context xsi:type="TypeReference" typeName="IllegalStateException"/>
         </arguments>
         <arguments xsi:type="LambdaExpression">
           <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
-            <context xsi:type="NewInstance" type="ABBAMachine"/>
+            <context xsi:type="NewInstance">
+              <type typeName="ABBAMachine"/>
+            </context>
             <arguments xsi:type="StringConstant" value="X"/>
           </statements>
         </arguments>
       </statements>
     </methods>
     <methods name="rejectsAAA" visibility="PUBLIC">
-      <annotations name="org.junit.jupiter.api.Test"/>
-      <statements xsi:type="MethodInvocation" methodByName="org.junit.jupiter.api.Assertions.assertThrows">
+      <annotations>
+        <type typeName="org.junit.jupiter.api.Test"/>
+      </annotations>
+      <statements xsi:type="MethodInvocation" methodByName="assertThrows">
+        <context xsi:type="TypeReference" typeName="org.junit.jupiter.api.Assertions"/>
         <arguments xsi:type="PropertyInvocation" propertyName="class">
           <context xsi:type="TypeReference" typeName="IllegalStateException"/>
         </arguments>
         <arguments xsi:type="LambdaExpression">
           <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
-            <context xsi:type="NewInstance" type="ABBAMachine"/>
+            <context xsi:type="NewInstance">
+              <type typeName="ABBAMachine"/>
+            </context>
             <arguments xsi:type="StringConstant" value="AAA"/>
           </statements>
         </arguments>

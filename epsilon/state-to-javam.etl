@@ -78,12 +78,12 @@ rule State2MethodWithTransitions
   guard: not s.outgoing.isEmpty()
 
   // Fetch the first character
-  cDeclaration.type = 'char';
+  cDeclaration.type = typeReference('char');
   cDeclaration.name = 'c';
   cDeclaration.initializer = methodInvocation(parameterReference(tp), 'charAt', Sequence { integerConstant(0) });
 
   // Put the rest of the string in another variable
-  restDeclaration.type = 'String';
+  restDeclaration.type = typeReference('String');
   restDeclaration.name = 'rest';
   restDeclaration.initializer = methodInvocation(parameterReference(tp), 'substring', Sequence { integerConstant(1) });
 
@@ -168,8 +168,9 @@ rule Rejects2Method
   // Wrap the generated invocation in an assertThrows call
   var invocation = testMethod.statements.first;
   testMethod.statements.clear();
-  testMethod.statements.add(methodInvocation(null,
-    'org.junit.jupiter.api.Assertions.assertThrows',
+  testMethod.statements.add(methodInvocation(
+    typeReference('org.junit.jupiter.api.Assertions'),
+    'assertThrows',
     Sequence {
       propertyInvocation(typeReference('IllegalStateException'), 'class'),
       lambdaExpression(Sequence { invocation })

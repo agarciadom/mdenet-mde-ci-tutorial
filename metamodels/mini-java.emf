@@ -8,7 +8,7 @@ class JavaClass {
 }
 
 class Annotation {
-  attr String name;
+  val TypeReference type;
   val AnnotationArgument[*] arguments;
 }
 
@@ -104,7 +104,7 @@ class PropertyInvocation extends Expression {
 }
 
 class NewInstance extends Expression {
-  attr String type;
+  val TypeReference type;
   val Expression[*] arguments;
 }
 
@@ -123,7 +123,7 @@ class IfStatement extends Statement {
 }
 
 class VariableDeclaration extends Statement {
-  attr String type;
+  val TypeReference type;
   attr String name;
   val Expression initializer;
 }
