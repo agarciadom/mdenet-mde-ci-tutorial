@@ -1,4 +1,4 @@
 rule JavaClassToJavaFile transform f: JavaFile {
   template:  'minijava-to-java.egl'
-  target: '../generated/src/' + (f.isTest ? 'test' : 'main') + '/java/' + f.javaPackage.replaceAll('[.]', '/') + '/' + f.basename
+  target: '../gradle/lib/src/' + (f.isTest ? 'test' : 'main') + '/java/' + f.javaPackage.replaceAll('[.]', '/') + '/' + f.basename
 }
