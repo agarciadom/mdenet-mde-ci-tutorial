@@ -4,6 +4,16 @@ package [%=f.javaPackage%];
 
 [% }
 
+if (f.imports.size() > 0) {
+  for (imp in f.imports) {%]
+import [%=imp.type.typeName%];
+[%
+  }
+%]
+
+[%
+}
+
 for (c in f.classes) {
 %]
 public class [%= c.name %] {

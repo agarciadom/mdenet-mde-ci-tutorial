@@ -132,10 +132,16 @@
     </classes>
   </JavaFile>
   <JavaFile isTest="true" basename="ABBAMachineTest.java" javaPackage="uk.ac.york.sample.machine">
+    <imports>
+      <type typeName="org.junit.jupiter.api.Assertions"/>
+    </imports>
+    <imports>
+      <type typeName="org.junit.jupiter.api.Test"/>
+    </imports>
     <classes name="ABBAMachineTest">
       <methods name="acceptsA" visibility="PUBLIC">
         <annotations>
-          <type typeName="org.junit.jupiter.api.Test"/>
+          <type typeName="Test"/>
         </annotations>
         <statements xsi:type="MethodInvocation" methodByRef="/0/@classes.0/@methods.0">
           <context xsi:type="NewInstance">
@@ -146,7 +152,7 @@
       </methods>
       <methods name="acceptsABA" visibility="PUBLIC">
         <annotations>
-          <type typeName="org.junit.jupiter.api.Test"/>
+          <type typeName="Test"/>
         </annotations>
         <statements xsi:type="MethodInvocation" methodByRef="/0/@classes.0/@methods.0">
           <context xsi:type="NewInstance">
@@ -157,7 +163,7 @@
       </methods>
       <methods name="acceptsABZBA" visibility="PUBLIC">
         <annotations>
-          <type typeName="org.junit.jupiter.api.Test"/>
+          <type typeName="Test"/>
         </annotations>
         <statements xsi:type="MethodInvocation" methodByRef="/0/@classes.0/@methods.0">
           <context xsi:type="NewInstance">
@@ -168,10 +174,10 @@
       </methods>
       <methods name="rejectsX" visibility="PUBLIC">
         <annotations>
-          <type typeName="org.junit.jupiter.api.Test"/>
+          <type typeName="Test"/>
         </annotations>
         <statements xsi:type="MethodInvocation" methodByName="assertThrows">
-          <context xsi:type="TypeReference" typeName="org.junit.jupiter.api.Assertions"/>
+          <context xsi:type="TypeReference" typeName="Assertions"/>
           <arguments xsi:type="PropertyInvocation" propertyName="class">
             <context xsi:type="TypeReference" typeName="IllegalStateException"/>
           </arguments>
@@ -187,10 +193,10 @@
       </methods>
       <methods name="rejectsAAA" visibility="PUBLIC">
         <annotations>
-          <type typeName="org.junit.jupiter.api.Test"/>
+          <type typeName="Test"/>
         </annotations>
         <statements xsi:type="MethodInvocation" methodByName="assertThrows">
-          <context xsi:type="TypeReference" typeName="org.junit.jupiter.api.Assertions"/>
+          <context xsi:type="TypeReference" typeName="Assertions"/>
           <arguments xsi:type="PropertyInvocation" propertyName="class">
             <context xsi:type="TypeReference" typeName="IllegalStateException"/>
           </arguments>

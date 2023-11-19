@@ -4,6 +4,34 @@ pre {
   var basePackage = 'uk.ac.york.sample.machine';
 }
 
+post {
+  /*
+   * Turn long type references into imports (does not handle
+   * cases where multiple types have the same simple name).
+   */
+  for (jf in Target!JavaFile.all) {
+    var imports : Map;
+    var eContents = jf.eAllContents();
+
+    while (eContents.hasNext()) {
+      var tr = eContents.next();
+      if (tr.isKindOf(Target!TypeReference) and tr.typeName.countDots() > 0) {
+        var imp = imports.get(tr.typeName);
+        if (imp.isUndefined()) {
+          imp = new Target!Import;
+          imp.type = typeReference(tr.typeName);
+          imports.put(tr.typeName, imp);
+        }
+
+        tr.typeName = tr.typeName.split('[.]').last;
+      }
+    }
+
+    // Sort imports by type
+    jf.imports.addAll(imports.values().asSequence().sortBy(imp | imp.type.typeName));
+  }
+}
+
 rule StateMachine2JavaFile
   transform sm: Source!StateMachine
   to jf: Target!JavaFile
@@ -40,8 +68,8 @@ rule StateMachine2JavaTestFile
   transform sm: Source!StateMachine
   to jf: Target!JavaFile
 {
-  jf.basename = sm.name + 'Test.java';
   jf.isTest = true;
+  jf.basename = sm.name + 'Test.java';
   jf.javaPackage = basePackage;
   jf.classes.add(sm.equivalent('StateMachine2JavaTestClass'));  
 }
@@ -204,4 +232,8 @@ operation Target!Method setTestMethod(name: String, annotationArguments: Sequenc
   self.name = name;
   self.visibility = Target!Visibility#PUBLIC;
   self.annotations.add(annotation('org.junit.jupiter.api.Test', annotationArguments));
+}
+
+operation String countDots() {
+  return self.length() - self.replace('[.]', '').length();
 }
