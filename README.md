@@ -7,6 +7,14 @@
 - Right-click on `Run Ant Workflow.launch` in Eclipse's Project/Package Explorer view
 - Select `Run as` -> `Run Ant Workflow`
 
+This will generate the source code for the Gradle project in `gradle`.
+Run the build from a terminal:
+
+```sh
+cd gradle
+./gradlew build
+```
+
 ## With Docker
 
 If you have [Docker](https://docs.docker.com/engine/install/) installed, run this command:
