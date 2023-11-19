@@ -31,7 +31,7 @@
 	<target name="generate">
 		<loadMiniJava read="true" store="false" />
 
-		<epsilon.egl src="epsilon/minijava-to-java.egl" target="Example.java">
+		<epsilon.egl src="epsilon/minijava-to-java.egx" target="Example.java">
 			<model ref="MiniJava" />
 		</epsilon.egl>
 

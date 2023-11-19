@@ -3,13 +3,12 @@
 A state machine with four states A, B, C and DE
 and transitions among them
 -->
-<machine name="ABC">
-    <state name="A"/>
+<machine name="ABBAMachine" initialState="FirstA">
+    <state name="FirstA"/>
     <state name="B"/>
-    <state name="C"/>
-    <state name="D"/>
-    <transition from="A" to="B"/>
-    <transition from="B" to="C"/>
-    <transition from="A" to="A"/>
-    <transition from="C" to="A"/>
+    <state name="LastA"/>
+
+    <transition from="FirstA" to="B" char="B"/>
+    <transition from="B" to="B" char="B-Z"/>
+    <transition from="B" to="LastA" char="A"/>
 </machine>

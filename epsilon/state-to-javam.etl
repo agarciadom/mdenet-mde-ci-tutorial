@@ -1,6 +1,199 @@
+import 'utils.eol';
+
 rule StateMachine2JavaClass
-  transform sm : Source!StateMachine
-  to jc : Target!JavaClass
+  transform sm: Source!StateMachine
+  to jc: Target!JavaClass,
+     processMethod: Target!Method,
+     tp: Target!Parameter,
+     invoke: Target!MethodInvocation
 {
   jc.name = sm.name;
+  jc.methods.add(processMethod);
+  jc.methods.addAll(sm.states.collect(s|s.equivalent()));
+
+  // Adds a 'public process(String text)' method, which calls the initial state
+  processMethod.name = 'process';
+  processMethod.visibility = Target!MethodVisibility#PUBLIC;
+  processMethod.parameters.add(tp);
+  tp.name = 'text';
+
+  processMethod.statements.add(invoke);
+  invoke.methodByRef = sm.initialState.equivalent().selectOne(e|e.isKindOf(Target!Method));
+  invoke.arguments.add(parameterReference(tp));
+}
+
+rule State2Method
+  transform s : Source!State
+  to m: Target!Method, tp: Target!Parameter,
+     ifNotEmpty: Target!IfStatement,
+     cDeclaration: Target!VariableDeclaration,
+     restDeclaration: Target!VariableDeclaration
+{
+  m.name = s.methodName();
+  m.visibility = Target!MethodVisibility#PROTECTED;
+
+  m.parameters.add(tp);
+  tp.name = 'text';
+
+  m.statements.add(ifNotEmpty);
+
+  // If the text is not empty...
+  ifNotEmpty.condition = logicalNot(methodInvocation(parameterReference(tp), 'isEmpty', Sequence {}));
+
+  // Fetch the first character
+  cDeclaration.type = 'char';
+  cDeclaration.name = 'c';
+  cDeclaration.initializer = methodInvocation(parameterReference(tp), 'charAt', Sequence { integerConstant(0) });
+
+  // Put the rest of the string in another variable
+  restDeclaration.type = 'String';
+  restDeclaration.name = 'rest';
+  restDeclaration.initializer = methodInvocation(parameterReference(tp), 'substring', Sequence { integerConstant(1) });
+
+  // Add transitions
+  if (not s.outgoing.isEmpty()) {
+    ifNotEmpty.statements.add(cDeclaration);
+    ifNotEmpty.statements.add(restDeclaration);
+    ifNotEmpty.statements.addAll(s.outgoing.collect(o|o.equivalent()));
+  }
+
+  // Add error if we haven't moved to another state by now
+  ifNotEmpty.statements.add(throwStatement(newInstance('IllegalStateException', Sequence {
+    methodInvocation(null, 'String.format', Sequence {
+      stringConstant('State "' + s.name + '": no valid outgoing transition for "%s"'),
+      parameterReference(tp)
+    })
+  })));
+}
+
+@abstract
+rule TransitionToStatement
+  transform tr: Source!Transition
+  to ifStmt: Target!IfStatement, methodInvocation: Target!MethodInvocation, retStmt: Target!ReturnStatement
+{
+  var cDeclaration = tr.from.equivalents().selectOne(e | e.isKindOf(Target!VariableDeclaration) and e.name = 'c');
+  var restDeclaration = tr.from.equivalents().selectOne(e | e.isKindOf(Target!VariableDeclaration) and e.name = 'rest');
+
+  tr.~cDeclaration = cDeclaration;
+  tr.~restDeclaration = restDeclaration;
+
+  ifStmt.statements.add(methodInvocation);
+  ifStmt.statements.add(retStmt);
+  methodInvocation.methodByRef = tr.`to`.equivalent();
+  methodInvocation.arguments.add(variableReference(restDeclaration));
+}
+
+rule SingleCharacterTransition
+  transform tr: Source!Transition
+  to ifStmt: Target!IfStatement, methodInvocation: Target!MethodInvocation, retStmt: Target!ReturnStatement
+  extends TransitionToStatement
+{
+  guard: tr.characterRange.matches("\\w")
+
+  ifStmt.condition = equals(variableReference(tr.~cDeclaration), characterConstant(tr.characterRange));
+}
+
+rule CharacterRangeTransition
+  transform tr: Source!Transition
+  to ifStmt: Target!IfStatement, methodInvocation: Target!MethodInvocation, retStmt: Target!ReturnStatement
+  extends TransitionToStatement
+{
+  guard: tr.characterRange.matches("\\w-\\w")
+
+  ifStmt.condition = logicalAnd(
+    gte(variableReference(tr.~cDeclaration), characterConstant(tr.characterRange.charAt(0).toString())),
+    lte(variableReference(tr.~cDeclaration), characterConstant(tr.characterRange.charAt(2).toString()))
+  );
+}
+
+operation logicalNot(e: Target!Expression) {
+  var ln = new Target!LogicalNot;
+  ln.operand = e;
+  return ln;
+}
+
+operation logicalAnd(l: Target!Expression, r: Target!Expression) {
+  var la = new Target!LogicalAnd;
+  la.left = l;
+  la.right = r;
+  return la;
+}
+
+operation equals(l: Target!Expression, r: Target!Expression) {
+  var eq = new Target!Equals;
+  eq.left = l;
+  eq.right = r;
+  return eq;
+}
+
+operation gte(l: Target!Expression, r: Target!Expression) {
+  var exp = new Target!GreaterThanOrEquals;
+  exp.left = l;
+  exp.right = r;
+  return exp;
+}
+
+operation lte(l: Target!Expression, r: Target!Expression) {
+  var exp = new Target!LessThanOrEquals;
+  exp.left = l;
+  exp.right = r;
+  return exp;
+}
+
+operation add(l: Target!Expression, r: Target!Expression) {
+  var exp = new Target!Add;
+  exp.left = l;
+  exp.right = r;
+  return exp;
+}
+
+operation parameterReference(p: Target!Parameter) {
+  var pr = new Target!ParameterReference;
+  pr.param = p;
+  return pr;
+}
+
+operation variableReference(vd: Target!VariableDeclaration) {
+  var vr = new Target!VariableReference;
+  vr.variable = vd;
+  return vr;
+}
+
+operation methodInvocation(context: Target!Expression, methodName: String, arguments: Sequence) {
+  var mi = new Target!MethodInvocation;
+  mi.context = context;
+  mi.methodByName = methodName;
+  mi.arguments = arguments;
+  return mi;
+}
+
+operation throwStatement(e: Target!Expression) {
+  var ts = new Target!ThrowStatement;
+  ts.expression = e;
+  return ts;
+}
+
+operation newInstance(type: String, arguments: Sequence) {
+  var ni = new Target!NewInstance;
+  ni.type = type;
+  ni.arguments = arguments;
+  return ni;
+}
+
+operation integerConstant(n: Integer) {
+  var ic = new Target!IntegerConstant;
+  ic.value = n;
+  return ic;
+}
+
+operation characterConstant(c: String) {
+  var cc = new Target!CharacterConstant;
+  cc.value = c.charAt(0);
+  return cc;
+}
+
+operation stringConstant(s: String) {
+  var sc = new Target!StringConstant;
+  sc.value = s;
+  return sc;
 }

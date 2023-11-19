@@ -2,5 +2,109 @@
 package miniJava;
 
 class JavaClass {
-    attr String name;
+  attr String name;
+  val Method[*] methods;
+}
+
+class Method {
+  attr String name;
+  attr MethodVisibility visibility;
+  val Parameter[*] parameters;
+  val Statement[*] statements;
+}
+
+class Parameter {
+  attr String type = "String";
+  attr String name;
+}
+
+abstract class Statement {}
+
+abstract class Expression {}
+
+class ParameterReference extends Expression {
+  ref Parameter param;
+}
+
+class VariableReference extends Expression {
+  ref VariableDeclaration variable;
+}
+
+class IntegerConstant extends Expression {
+  attr int value;
+}
+
+class CharacterConstant extends Expression {
+  attr char value;
+}
+
+class StringConstant extends Expression {
+  attr String value;
+}
+
+class LogicalNot extends Expression {
+  val Expression operand;
+}
+
+class LogicalAnd extends Expression {
+  val Expression left;
+  val Expression right;
+}
+
+class Add extends Expression {
+  val Expression left;
+  val Expression right;
+}
+
+class Equals extends Expression {
+  val Expression left;
+  val Expression right;
+}
+
+class GreaterThanOrEquals extends Expression {
+  val Expression left;
+  val Expression right;
+}
+
+class LessThanOrEquals extends Expression {
+  val Expression left;
+  val Expression right;
+} 
+
+class MethodInvocation extends Expression, Statement {
+  val Expression context;
+
+  // We can refer to one of our methods, or just include a name
+  ref Method methodByRef;
+  attr String methodByName;
+
+  val Expression[*] arguments;
+}
+
+class NewInstance extends Expression {
+	attr String type;
+	val Expression[*] arguments;
+}
+
+enum MethodVisibility {
+  PRIVATE; PROTECTED; PUBLIC;
+}
+
+class IfStatement extends Statement {
+  val Expression condition;
+  val Statement[*] statements;
+}
+
+class VariableDeclaration extends Statement {
+  attr String type;
+  attr String name;
+  val Expression initializer;
+}
+
+class ReturnStatement extends Statement {
+  val Expression expression;
+}
+
+class ThrowStatement extends Statement {
+  val Expression expression;
 }

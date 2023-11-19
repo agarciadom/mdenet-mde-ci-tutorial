@@ -1,3 +1,91 @@
-class [%= JavaClass.all.first.name %] {
-  /* example */
+[% import 'utils.eol'; %]
+public class [%= c.name %] {
+[% for (m in c.methods) {%]
+  [%=m.declaration()%] {
+    [% for (b in m.statements) { %]
+    [%=b.generate()%]
+    [% } %]
+  }
+[% } %]
 }
+[%
+
+@template
+operation Method declaration() {%]
+[%=self.javaVisibility()%] void [%=self.name%]([%=self.parameters.collect(p|p.declaration()).concat(', ')%])
+[%
+}
+
+@template
+operation MethodInvocation generate() {%]
+[%=self.context.isDefined() ? self.context.generate() + '.' : ''%][%=self.methodByRef.isDefined() ? self.methodByRef.name : self.methodByName %]([%=self.arguments.collect(a|a.generate()).concat(', ')%])[%=self.eContainingFeature.name = 'statements' ? ';' : ''%][%
+}
+
+operation VariableDeclaration generate() {
+  return self.type + ' ' + self.name + ' = ' + self.initializer.generate() + ';';
+} 
+
+operation ParameterReference generate() {
+  return self.param.name;
+}
+
+operation VariableReference generate() {
+  return self.variable.name;
+}
+
+operation IntegerConstant generate() {
+  return self.value.toString();
+}
+
+operation CharacterConstant generate() {
+  return "'" + self.value.toString() + "'";
+}
+
+operation StringConstant generate() {
+  return '"' + self.value.replaceAll('"', '\\\\"') + '"';
+}
+
+@template
+operation IfStatement generate() {%]
+if ([%=self.condition.generate()%]) {
+  [% for (s in self.statements) {%]
+  [%= s.generate() %]
+  [% } %]
+}
+[%
+}
+
+operation ReturnStatement generate() {
+  return 'return' + (self.expression.isDefined() ? ' ' + self.expression.generate() : '') + ';';
+}
+
+operation ThrowStatement generate() {
+  return 'throw ' + self.expression.generate() + ';';
+}
+
+@template
+operation NewInstance generate() {%]
+new [%=self.type%]([%=self.arguments.collect(a|a.generate()).concat(', ')%])[%
+}
+
+operation LogicalNot generate() {
+  return '!' + self.operand.generate();
+}
+
+operation LogicalAnd generate() {
+  return self.left.generate() + ' && ' + self.right.generate();
+}
+
+operation Equals generate() {
+  return self.left.generate() + ' == ' + self.right.generate();
+}
+
+operation GreaterThanOrEquals generate() {
+  return self.left.generate() + ' >= ' + self.right.generate();
+}
+
+operation LessThanOrEquals generate() {
+  return self.left.generate() + ' <= ' + self.right.generate();
+}
+
+%]

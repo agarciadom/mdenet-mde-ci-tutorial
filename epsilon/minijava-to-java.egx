@@ -1,0 +1,4 @@
+rule JavaClassToJavaFile transform c: JavaClass {
+  template:  'minijava-to-java.egl'
+  target: '../generated/src/main/java/' + c.name + '.java'
+}

@@ -1,0 +1,19 @@
+operation State methodName(): String {
+  return 'process' + self.name.ftuc();
+}
+
+operation Parameter declaration(): String {
+  return self.type + ' ' + self.name;
+}
+
+operation Method javaVisibility(): String {
+  if (self.visibility = MethodVisibility#PRIVATE) {
+    return 'private';
+  } else if (self.visibility = MethodVisibility#PROTECTED) {
+    return 'protected';
+  } else if (self.visibility = MethodVisibility#PUBLIC) {
+    return 'public';
+  } else {
+    return null;
+  }
+}

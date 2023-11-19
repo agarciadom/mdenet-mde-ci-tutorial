@@ -1,28 +1,63 @@
-context State {
-	
-	// Check that state names consist
-	// of a single character
-	constraint OneCharacter {
-		check: self.name.length() = 1
-		message: "State names must be one character long"
+pre {
+  var statesByName = State.all.mapBy(s | s.name);
+}
+
+context StateMachine {
+	constraint HasName {
+		check: self.name.isDefined() and self.name.trim().size() > 0
+		message: 'Every state machine needs a name'
 	}
 
-	// Check that state names are unique
-	constraint Unique {
-		check: State.all.select(s|s.name = self.name).size() = 1
+	constraint HasValidJavaClassName {
+		guard: self.satisfies('HasName')
+		check: self.name.matches('\\w+')
+		message: 'State machine names should be made up only of alphanumeric characters'
+	}
+
+	constraint HasInitialState {
+		check: self.initialState.isDefined()
+		message: 'State machines should have an initial state'
+	}
+}
+
+context State {
+	constraint HasName {
+		check: self.name.isDefined() and self.name.trim().size() > 0
+		message: "Every state needs a name"
+	}
+
+	constraint HasUniqueName {
+		guard: self.satisfies('HasName')
+		check: statesByName.get(self.name).size() = 1
 		message: "Duplicate state name " + self.name
+	}
+
+	constraint HasValidJavaMethodName {
+		guard: self.satisfies('HasUniqueName')
+		check: self.name.matches('\\w+')
+		message: 'State names should be made up only of alphanumeric characters'
 	}
 }
 
 context Transition {
-	
-	// Check that there are no two transitions
-	// for the same pair of states
-	constraint Unique {
-		check: Transition.all.
-			select(t|t.from = self.from and t.to = self.to).size() = 1
+	constraint HasCharacterRange {
+		check: self.characterRange.trim().size() > 0
+		message: 'Every transition needs a pattern'
+	}
 
-		message: "Duplicate transition from " + self.from.name +
-			" to " + self.to.name
+	constraint HasValidCharacterRange {
+		guard: self.satisfies('HasCharacterRange')
+		check: self.characterRange.matches('.([-].)?')
+		message: 'Valid character ranges are either a single character or a range between two characters'
+	}
+
+	constraint HasFromState {
+		check: self.from.isDefined()
+		message: 'Every transition needs a from state'
+	}
+
+	constraint HasToState {
+		check: self.to.isDefined()
+		message: 'Every transition needs a to state'
 	}
 }

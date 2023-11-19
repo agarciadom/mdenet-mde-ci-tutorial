@@ -3,17 +3,22 @@ package stm;
 
 class StateMachine {
     attr String name;
+    ref State initialState;
 	val State[*] states;
 	val Transition[*] transitions;
 }
 
 class State {
     attr String name;
+
     ref Transition[*]#from outgoing;
     ref Transition[*]#to incoming;
 }
 
 class Transition {
+    // May be single character ("a"), or a range (e.g. "a-z")
+    attr String characterRange;
+
     ref State#outgoing from;
     ref State#incoming to;
 }
