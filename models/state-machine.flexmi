@@ -4,7 +4,7 @@
     <state name="B"/>
     <state name="LastA"/>
 
-    <transition from="FirstA" to="B" char="B"/>
+    <transition from="FirstA" to="B" char="A"/>
     <transition from="B" to="B" char="B-Z"/>
     <transition from="B" to="LastA" char="A"/>
 

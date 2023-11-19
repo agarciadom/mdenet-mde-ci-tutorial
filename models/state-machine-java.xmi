@@ -33,7 +33,7 @@
           <statements xsi:type="IfStatement">
             <condition xsi:type="Equals">
               <left xsi:type="VariableReference" variable="/0/@classes.0/@methods.1/@statements.0/@statements.0"/>
-              <right xsi:type="CharacterConstant" value="66"/>
+              <right xsi:type="CharacterConstant" value="65"/>
             </condition>
             <statements xsi:type="MethodInvocation" methodByRef="/0/@classes.0/@methods.2">
               <arguments xsi:type="VariableReference" variable="/0/@classes.0/@methods.1/@statements.0/@statements.1"/>
