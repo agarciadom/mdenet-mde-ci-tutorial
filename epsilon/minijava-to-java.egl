@@ -132,10 +132,6 @@ operation LessThanOrEquals generate() {
   return self.left.generate() + ' <= ' + self.right.generate();
 }
 
-operation State methodName(): String {
-  return 'process' + self.name.ftuc();
-}
-
 operation Parameter declaration(): String {
   return self.type + ' ' + self.name;
 }

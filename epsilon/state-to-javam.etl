@@ -240,22 +240,6 @@ operation State methodName(): String {
   return 'process' + self.name.ftuc();
 }
 
-operation Parameter declaration(): String {
-  return self.type + ' ' + self.name;
-}
-
-operation Any javaVisibility(): String {
-  if (self.visibility = Visibility#PRIVATE) {
-    return 'private';
-  } else if (self.visibility = Visibility#PROTECTED) {
-    return 'protected';
-  } else if (self.visibility = Visibility#PUBLIC) {
-    return 'public';
-  } else {
-    return null;
-  }
-}
-
 operation logicalNot(e: Target!Expression) {
   var ln = new Target!LogicalNot;
   ln.operand = e;
