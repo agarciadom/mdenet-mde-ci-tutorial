@@ -1,4 +1,4 @@
-rule JavaClassToJavaFile transform c: JavaClass {
+rule JavaClassToJavaFile transform f: JavaFile {
   template:  'minijava-to-java.egl'
-  target: '../generated/src/' + (c.isTest ? 'test' : 'main') + '/java/' + c.name + '.java'
+  target: '../generated/src/' + (f.isTest ? 'test' : 'main') + '/java/' + f.javaPackage.replaceAll('[.]', '/') + '/' + f.basename
 }

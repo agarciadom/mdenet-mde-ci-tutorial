@@ -1,9 +1,22 @@
 @namespace(uri="miniJava", prefix="")
 package miniJava;
 
+class JavaFile {
+  attr boolean isTest = false;
+  attr String basename;
+  attr String javaPackage;
+
+  val Import[*] imports;
+  val JavaClass[*] classes; 
+}
+
+class Import {
+  val TypeReference type;
+}
+
 class JavaClass {
   attr String name;
-  attr boolean isTest = false;
+  attr Visibility visibility;
   val Method[*] methods;
 }
 
@@ -19,7 +32,7 @@ class AnnotationArgument {
 
 class Method {
   attr String name;
-  attr MethodVisibility visibility;
+  attr Visibility visibility;
 
   val Annotation[*] annotations;
   val Parameter[*] parameters;
@@ -113,7 +126,7 @@ class LambdaExpression extends Expression {
   val Statement[*] statements;
 }
 
-enum MethodVisibility {
+enum Visibility {
   PRIVATE; PROTECTED; PUBLIC;
 }
 

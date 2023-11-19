@@ -1,5 +1,19 @@
 import 'utils.eol';
 
+pre {
+  var basePackage = 'uk.ac.york.sample.machine';
+}
+
+rule StateMachine2JavaFile
+  transform sm: Source!StateMachine
+  to jf: Target!JavaFile
+{
+  jf.isTest = false;
+  jf.basename = sm.name + '.java';
+  jf.javaPackage = basePackage;
+  jf.classes.add(sm.equivalent('StateMachine2JavaClass'));
+}
+
 rule StateMachine2JavaClass
   transform sm: Source!StateMachine
   to jc: Target!JavaClass,
@@ -13,7 +27,7 @@ rule StateMachine2JavaClass
 
   // Adds a 'public process(String text)' method, which calls the initial state
   processMethod.name = 'process';
-  processMethod.visibility = Target!MethodVisibility#PUBLIC;
+  processMethod.visibility = Target!Visibility#PUBLIC;
   processMethod.parameters.add(tp);
   tp.name = 'text';
 
@@ -22,13 +36,21 @@ rule StateMachine2JavaClass
   invoke.arguments.add(parameterReference(tp));
 }
 
+rule StateMachine2JavaTestFile
+  transform sm: Source!StateMachine
+  to jf: Target!JavaFile
+{
+  jf.basename = sm.name + 'Test.java';
+  jf.isTest = true;
+  jf.javaPackage = basePackage;
+  jf.classes.add(sm.equivalent('StateMachine2JavaTestClass'));  
+}
+
 rule StateMachine2JavaTestClass
   transform sm: Source!StateMachine
   to jc: Target!JavaClass
 {
   jc.name = sm.name + 'Test';
-  jc.isTest = true;
-
   jc.methods.addAll(sm.testCases.collect(e | e.equivalent()));
 }
 
@@ -39,7 +61,7 @@ rule State2Method
      ifNotEmpty: Target!IfStatement
 {
   m.name = s.methodName();
-  m.visibility = Target!MethodVisibility#PROTECTED;
+  m.visibility = Target!Visibility#PROTECTED;
 
   m.parameters.add(tp);
   tp.name = 'text';
@@ -180,6 +202,6 @@ rule Rejects2Method
 
 operation Target!Method setTestMethod(name: String, annotationArguments: Sequence) {
   self.name = name;
-  self.visibility = Target!MethodVisibility#PUBLIC;
+  self.visibility = Target!Visibility#PUBLIC;
   self.annotations.add(annotation('org.junit.jupiter.api.Test', annotationArguments));
 }

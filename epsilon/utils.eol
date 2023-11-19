@@ -6,12 +6,12 @@ operation Parameter declaration(): String {
   return self.type + ' ' + self.name;
 }
 
-operation Method javaVisibility(): String {
-  if (self.visibility = MethodVisibility#PRIVATE) {
+operation Any javaVisibility(): String {
+  if (self.visibility = Visibility#PRIVATE) {
     return 'private';
-  } else if (self.visibility = MethodVisibility#PROTECTED) {
+  } else if (self.visibility = Visibility#PROTECTED) {
     return 'protected';
-  } else if (self.visibility = MethodVisibility#PUBLIC) {
+  } else if (self.visibility = Visibility#PUBLIC) {
     return 'public';
   } else {
     return null;

@@ -1,4 +1,11 @@
 [% import 'utils.eol'; %]
+[% if (f.javaPackage.isDefined()) {%]
+package [%=f.javaPackage%];
+
+[% }
+
+for (c in f.classes) {
+%]
 public class [%= c.name %] {
 [% for (m in c.methods) {%]
   [%=m.declaration()%] {
@@ -12,6 +19,7 @@ public class [%= c.name %] {
 [% } %]
 }
 [%
+}
 
 @template
 operation Method declaration() {%]
