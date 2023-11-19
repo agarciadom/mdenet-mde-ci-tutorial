@@ -3,9 +3,12 @@ package stm;
 
 class StateMachine {
     attr String name;
+
     ref State initialState;
 	val State[*] states;
 	val Transition[*] transitions;
+
+	val TestCase[*] testCases;
 }
 
 class State {
@@ -21,4 +24,14 @@ class Transition {
 
     ref State#outgoing from;
     ref State#incoming to;
+}
+
+abstract class TestCase {}
+
+class Accepts extends TestCase {
+	attr String text;
+}
+
+class Rejects extends TestCase {
+	attr String text;
 }

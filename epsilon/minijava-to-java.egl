@@ -6,12 +6,18 @@ public class [%= c.name %] {
     [%=b.generate()%]
     [% } %]
   }
+[% if (hasMore) { %]
+
+[% } %]
 [% } %]
 }
 [%
 
 @template
 operation Method declaration() {%]
+[% if (not self.annotations.isEmpty()) {%]
+[%=self.annotations.isEmpty() ? '' : self.annotations.collect(a|a.generate()).concat('\n')%]
+[% } %]
 [%=self.javaVisibility()%] void [%=self.name%]([%=self.parameters.collect(p|p.declaration()).concat(', ')%])
 [%
 }
@@ -21,12 +27,33 @@ operation MethodInvocation generate() {%]
 [%=self.context.isDefined() ? self.context.generate() + '.' : ''%][%=self.methodByRef.isDefined() ? self.methodByRef.name : self.methodByName %]([%=self.arguments.collect(a|a.generate()).concat(', ')%])[%=self.eContainingFeature.name = 'statements' ? ';' : ''%][%
 }
 
+operation PropertyInvocation generate() {
+  return self.context.generate() + '.' + self.propertyName;
+}
+
+operation Annotation generate() {
+  return '@' + self.name + (self.arguments.isEmpty() ? '' : '(' + self.arguments.collect(a|a.generate()).concat(', ') + ')');
+}
+
+operation AnnotationArgument generate() {
+  return self.name + ' = ' + self.expression.generate();
+}
+
+@template
+operation LambdaExpression generate() {%]
+([%= self.parameters.collect(p|p.generate()).concat(', ') %]) -> {[%=self.statements.collect(s|s.generate()).concat(' ')%]}[%
+}
+
 operation VariableDeclaration generate() {
   return self.type + ' ' + self.name + ' = ' + self.initializer.generate() + ';';
 } 
 
 operation ParameterReference generate() {
   return self.param.name;
+}
+
+operation TypeReference generate() {
+  return self.typeName;
 }
 
 operation VariableReference generate() {

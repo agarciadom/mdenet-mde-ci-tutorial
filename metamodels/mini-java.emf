@@ -3,12 +3,25 @@ package miniJava;
 
 class JavaClass {
   attr String name;
+  attr boolean isTest = false;
   val Method[*] methods;
+}
+
+class Annotation {
+  attr String name;
+  val AnnotationArgument[*] arguments;
+}
+
+class AnnotationArgument {
+  attr String name;
+  val Expression expression;
 }
 
 class Method {
   attr String name;
   attr MethodVisibility visibility;
+
+  val Annotation[*] annotations;
   val Parameter[*] parameters;
   val Statement[*] statements;
 }
@@ -28,6 +41,10 @@ class ParameterReference extends Expression {
 
 class VariableReference extends Expression {
   ref VariableDeclaration variable;
+}
+
+class TypeReference extends Expression {
+  attr String typeName;
 }
 
 class IntegerConstant extends Expression {
@@ -81,9 +98,19 @@ class MethodInvocation extends Expression, Statement {
   val Expression[*] arguments;
 }
 
+class PropertyInvocation extends Expression {
+  val Expression context;
+  attr String propertyName;
+}
+
 class NewInstance extends Expression {
-	attr String type;
-	val Expression[*] arguments;
+  attr String type;
+  val Expression[*] arguments;
+}
+
+class LambdaExpression extends Expression {
+  val Parameter[*] parameters;
+  val Statement[*] statements;
 }
 
 enum MethodVisibility {
@@ -107,4 +134,4 @@ class ReturnStatement extends Statement {
 
 class ThrowStatement extends Statement {
   val Expression expression;
-}
+} 

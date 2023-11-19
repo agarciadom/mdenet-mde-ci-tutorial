@@ -1,123 +1,176 @@
 <?xml version="1.0" encoding="ASCII"?>
-<JavaClass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="miniJava" xsi:schemaLocation="miniJava ../metamodels/mini-java.emf" name="ABBAMachine">
-  <methods name="process" visibility="PUBLIC">
-    <parameters name="text"/>
-    <statements xsi:type="MethodInvocation" methodByRef="//@methods.1">
-      <arguments xsi:type="ParameterReference" param="//@methods.0/@parameters.0"/>
-    </statements>
-  </methods>
-  <methods name="processFirstA" visibility="PROTECTED">
-    <parameters name="text"/>
-    <statements xsi:type="IfStatement">
-      <condition xsi:type="LogicalNot">
-        <operand xsi:type="MethodInvocation" methodByName="isEmpty">
-          <context xsi:type="ParameterReference" param="//@methods.1/@parameters.0"/>
-        </operand>
-      </condition>
-      <statements xsi:type="VariableDeclaration" type="char" name="c">
-        <initializer xsi:type="MethodInvocation" methodByName="charAt">
-          <context xsi:type="ParameterReference" param="//@methods.1/@parameters.0"/>
-          <arguments xsi:type="IntegerConstant"/>
-        </initializer>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="miniJava" xsi:schemaLocation="miniJava ../metamodels/mini-java.emf">
+  <JavaClass name="ABBAMachine">
+    <methods name="process" visibility="PUBLIC">
+      <parameters name="text"/>
+      <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.1">
+        <arguments xsi:type="ParameterReference" param="/0/@methods.0/@parameters.0"/>
       </statements>
-      <statements xsi:type="VariableDeclaration" type="String" name="rest">
-        <initializer xsi:type="MethodInvocation" methodByName="substring">
-          <context xsi:type="ParameterReference" param="//@methods.1/@parameters.0"/>
-          <arguments xsi:type="IntegerConstant" value="1"/>
-        </initializer>
-      </statements>
+    </methods>
+    <methods name="processFirstA" visibility="PROTECTED">
+      <parameters name="text"/>
       <statements xsi:type="IfStatement">
-        <condition xsi:type="Equals">
-          <left xsi:type="VariableReference" variable="//@methods.1/@statements.0/@statements.0"/>
-          <right xsi:type="CharacterConstant" value="66"/>
+        <condition xsi:type="LogicalNot">
+          <operand xsi:type="MethodInvocation" methodByName="isEmpty">
+            <context xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
+          </operand>
         </condition>
-        <statements xsi:type="MethodInvocation" methodByRef="//@methods.2">
-          <arguments xsi:type="VariableReference" variable="//@methods.1/@statements.0/@statements.1"/>
+        <statements xsi:type="VariableDeclaration" type="char" name="c">
+          <initializer xsi:type="MethodInvocation" methodByName="charAt">
+            <context xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
+            <arguments xsi:type="IntegerConstant"/>
+          </initializer>
         </statements>
-        <statements xsi:type="ReturnStatement"/>
-      </statements>
-      <statements xsi:type="ThrowStatement">
-        <expression xsi:type="NewInstance" type="IllegalStateException">
-          <arguments xsi:type="MethodInvocation" methodByName="String.format">
-            <arguments xsi:type="StringConstant" value="State &quot;FirstA&quot;: no valid outgoing transition for &quot;%s&quot;"/>
-            <arguments xsi:type="ParameterReference" param="//@methods.1/@parameters.0"/>
-          </arguments>
-        </expression>
-      </statements>
-    </statements>
-  </methods>
-  <methods name="processB" visibility="PROTECTED">
-    <parameters name="text"/>
-    <statements xsi:type="IfStatement">
-      <condition xsi:type="LogicalNot">
-        <operand xsi:type="MethodInvocation" methodByName="isEmpty">
-          <context xsi:type="ParameterReference" param="//@methods.2/@parameters.0"/>
-        </operand>
-      </condition>
-      <statements xsi:type="VariableDeclaration" type="char" name="c">
-        <initializer xsi:type="MethodInvocation" methodByName="charAt">
-          <context xsi:type="ParameterReference" param="//@methods.2/@parameters.0"/>
-          <arguments xsi:type="IntegerConstant"/>
-        </initializer>
-      </statements>
-      <statements xsi:type="VariableDeclaration" type="String" name="rest">
-        <initializer xsi:type="MethodInvocation" methodByName="substring">
-          <context xsi:type="ParameterReference" param="//@methods.2/@parameters.0"/>
-          <arguments xsi:type="IntegerConstant" value="1"/>
-        </initializer>
-      </statements>
-      <statements xsi:type="IfStatement">
-        <condition xsi:type="LogicalAnd">
-          <left xsi:type="GreaterThanOrEquals">
-            <left xsi:type="VariableReference" variable="//@methods.2/@statements.0/@statements.0"/>
+        <statements xsi:type="VariableDeclaration" type="String" name="rest">
+          <initializer xsi:type="MethodInvocation" methodByName="substring">
+            <context xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
+            <arguments xsi:type="IntegerConstant" value="1"/>
+          </initializer>
+        </statements>
+        <statements xsi:type="IfStatement">
+          <condition xsi:type="Equals">
+            <left xsi:type="VariableReference" variable="/0/@methods.1/@statements.0/@statements.0"/>
             <right xsi:type="CharacterConstant" value="66"/>
-          </left>
-          <right xsi:type="LessThanOrEquals">
-            <left xsi:type="VariableReference" variable="//@methods.2/@statements.0/@statements.0"/>
-            <right xsi:type="CharacterConstant" value="90"/>
-          </right>
-        </condition>
-        <statements xsi:type="MethodInvocation" methodByRef="//@methods.2">
-          <arguments xsi:type="VariableReference" variable="//@methods.2/@statements.0/@statements.1"/>
+          </condition>
+          <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.2">
+            <arguments xsi:type="VariableReference" variable="/0/@methods.1/@statements.0/@statements.1"/>
+          </statements>
+          <statements xsi:type="ReturnStatement"/>
         </statements>
-        <statements xsi:type="ReturnStatement"/>
+        <statements xsi:type="ThrowStatement">
+          <expression xsi:type="NewInstance" type="IllegalStateException">
+            <arguments xsi:type="MethodInvocation" methodByName="String.format">
+              <arguments xsi:type="StringConstant" value="State &quot;FirstA&quot;: no valid outgoing transition for &quot;%s&quot;"/>
+              <arguments xsi:type="ParameterReference" param="/0/@methods.1/@parameters.0"/>
+            </arguments>
+          </expression>
+        </statements>
       </statements>
+    </methods>
+    <methods name="processB" visibility="PROTECTED">
+      <parameters name="text"/>
       <statements xsi:type="IfStatement">
-        <condition xsi:type="Equals">
-          <left xsi:type="VariableReference" variable="//@methods.2/@statements.0/@statements.0"/>
-          <right xsi:type="CharacterConstant" value="65"/>
+        <condition xsi:type="LogicalNot">
+          <operand xsi:type="MethodInvocation" methodByName="isEmpty">
+            <context xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
+          </operand>
         </condition>
-        <statements xsi:type="MethodInvocation" methodByRef="//@methods.3">
-          <arguments xsi:type="VariableReference" variable="//@methods.2/@statements.0/@statements.1"/>
+        <statements xsi:type="VariableDeclaration" type="char" name="c">
+          <initializer xsi:type="MethodInvocation" methodByName="charAt">
+            <context xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
+            <arguments xsi:type="IntegerConstant"/>
+          </initializer>
         </statements>
-        <statements xsi:type="ReturnStatement"/>
+        <statements xsi:type="VariableDeclaration" type="String" name="rest">
+          <initializer xsi:type="MethodInvocation" methodByName="substring">
+            <context xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
+            <arguments xsi:type="IntegerConstant" value="1"/>
+          </initializer>
+        </statements>
+        <statements xsi:type="IfStatement">
+          <condition xsi:type="LogicalAnd">
+            <left xsi:type="GreaterThanOrEquals">
+              <left xsi:type="VariableReference" variable="/0/@methods.2/@statements.0/@statements.0"/>
+              <right xsi:type="CharacterConstant" value="66"/>
+            </left>
+            <right xsi:type="LessThanOrEquals">
+              <left xsi:type="VariableReference" variable="/0/@methods.2/@statements.0/@statements.0"/>
+              <right xsi:type="CharacterConstant" value="90"/>
+            </right>
+          </condition>
+          <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.2">
+            <arguments xsi:type="VariableReference" variable="/0/@methods.2/@statements.0/@statements.1"/>
+          </statements>
+          <statements xsi:type="ReturnStatement"/>
+        </statements>
+        <statements xsi:type="IfStatement">
+          <condition xsi:type="Equals">
+            <left xsi:type="VariableReference" variable="/0/@methods.2/@statements.0/@statements.0"/>
+            <right xsi:type="CharacterConstant" value="65"/>
+          </condition>
+          <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.3">
+            <arguments xsi:type="VariableReference" variable="/0/@methods.2/@statements.0/@statements.1"/>
+          </statements>
+          <statements xsi:type="ReturnStatement"/>
+        </statements>
+        <statements xsi:type="ThrowStatement">
+          <expression xsi:type="NewInstance" type="IllegalStateException">
+            <arguments xsi:type="MethodInvocation" methodByName="String.format">
+              <arguments xsi:type="StringConstant" value="State &quot;B&quot;: no valid outgoing transition for &quot;%s&quot;"/>
+              <arguments xsi:type="ParameterReference" param="/0/@methods.2/@parameters.0"/>
+            </arguments>
+          </expression>
+        </statements>
       </statements>
-      <statements xsi:type="ThrowStatement">
-        <expression xsi:type="NewInstance" type="IllegalStateException">
-          <arguments xsi:type="MethodInvocation" methodByName="String.format">
-            <arguments xsi:type="StringConstant" value="State &quot;B&quot;: no valid outgoing transition for &quot;%s&quot;"/>
-            <arguments xsi:type="ParameterReference" param="//@methods.2/@parameters.0"/>
-          </arguments>
-        </expression>
+    </methods>
+    <methods name="processLastA" visibility="PROTECTED">
+      <parameters name="text"/>
+      <statements xsi:type="IfStatement">
+        <condition xsi:type="LogicalNot">
+          <operand xsi:type="MethodInvocation" methodByName="isEmpty">
+            <context xsi:type="ParameterReference" param="/0/@methods.3/@parameters.0"/>
+          </operand>
+        </condition>
+        <statements xsi:type="ThrowStatement">
+          <expression xsi:type="NewInstance" type="IllegalStateException">
+            <arguments xsi:type="MethodInvocation" methodByName="String.format">
+              <arguments xsi:type="StringConstant" value="State &quot;LastA&quot;: no valid outgoing transition for &quot;%s&quot;"/>
+              <arguments xsi:type="ParameterReference" param="/0/@methods.3/@parameters.0"/>
+            </arguments>
+          </expression>
+        </statements>
       </statements>
-    </statements>
-  </methods>
-  <methods name="processLastA" visibility="PROTECTED">
-    <parameters name="text"/>
-    <statements xsi:type="IfStatement">
-      <condition xsi:type="LogicalNot">
-        <operand xsi:type="MethodInvocation" methodByName="isEmpty">
-          <context xsi:type="ParameterReference" param="//@methods.3/@parameters.0"/>
-        </operand>
-      </condition>
-      <statements xsi:type="ThrowStatement">
-        <expression xsi:type="NewInstance" type="IllegalStateException">
-          <arguments xsi:type="MethodInvocation" methodByName="String.format">
-            <arguments xsi:type="StringConstant" value="State &quot;LastA&quot;: no valid outgoing transition for &quot;%s&quot;"/>
-            <arguments xsi:type="ParameterReference" param="//@methods.3/@parameters.0"/>
-          </arguments>
-        </expression>
+    </methods>
+  </JavaClass>
+  <JavaClass name="ABBAMachineTest" isTest="true">
+    <methods name="acceptsA" visibility="PUBLIC">
+      <annotations name="org.junit.jupiter.api.Test"/>
+      <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
+        <context xsi:type="NewInstance" type="ABBAMachine"/>
+        <arguments xsi:type="StringConstant" value="A"/>
       </statements>
-    </statements>
-  </methods>
-</JavaClass>
+    </methods>
+    <methods name="acceptsABA" visibility="PUBLIC">
+      <annotations name="org.junit.jupiter.api.Test"/>
+      <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
+        <context xsi:type="NewInstance" type="ABBAMachine"/>
+        <arguments xsi:type="StringConstant" value="ABA"/>
+      </statements>
+    </methods>
+    <methods name="acceptsABZBA" visibility="PUBLIC">
+      <annotations name="org.junit.jupiter.api.Test"/>
+      <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
+        <context xsi:type="NewInstance" type="ABBAMachine"/>
+        <arguments xsi:type="StringConstant" value="ABZBA"/>
+      </statements>
+    </methods>
+    <methods name="rejectsX" visibility="PUBLIC">
+      <annotations name="org.junit.jupiter.api.Test"/>
+      <statements xsi:type="MethodInvocation" methodByName="org.junit.jupiter.api.Assertions.assertThrows">
+        <arguments xsi:type="PropertyInvocation" propertyName="class">
+          <context xsi:type="TypeReference" typeName="IllegalStateException"/>
+        </arguments>
+        <arguments xsi:type="LambdaExpression">
+          <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
+            <context xsi:type="NewInstance" type="ABBAMachine"/>
+            <arguments xsi:type="StringConstant" value="X"/>
+          </statements>
+        </arguments>
+      </statements>
+    </methods>
+    <methods name="rejectsAAA" visibility="PUBLIC">
+      <annotations name="org.junit.jupiter.api.Test"/>
+      <statements xsi:type="MethodInvocation" methodByName="org.junit.jupiter.api.Assertions.assertThrows">
+        <arguments xsi:type="PropertyInvocation" propertyName="class">
+          <context xsi:type="TypeReference" typeName="IllegalStateException"/>
+        </arguments>
+        <arguments xsi:type="LambdaExpression">
+          <statements xsi:type="MethodInvocation" methodByRef="/0/@methods.0">
+            <context xsi:type="NewInstance" type="ABBAMachine"/>
+            <arguments xsi:type="StringConstant" value="AAA"/>
+          </statements>
+        </arguments>
+      </statements>
+    </methods>
+  </JavaClass>
+</xmi:XMI>

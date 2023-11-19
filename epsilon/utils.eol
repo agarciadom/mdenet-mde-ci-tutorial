@@ -71,12 +71,25 @@ operation variableReference(vd: Target!VariableDeclaration) {
   return vr;
 }
 
+operation typeReference(name: String) {
+  var tr = new Target!TypeReference;
+  tr.typeName = name;
+  return tr;
+}
+
 operation methodInvocation(context: Target!Expression, methodName: String, arguments: Sequence) {
   var mi = new Target!MethodInvocation;
   mi.context = context;
   mi.methodByName = methodName;
   mi.arguments = arguments;
   return mi;
+}
+
+operation propertyInvocation(context: Target!Expression, name: String) {
+  var pi = new Target!PropertyInvocation;
+  pi.context = context;
+  pi.propertyName = name;
+  return pi;
 }
 
 operation throwStatement(e: Target!Expression) {
@@ -108,4 +121,24 @@ operation stringConstant(s: String) {
   var sc = new Target!StringConstant;
   sc.value = s;
   return sc;
+}
+
+operation annotation(name: String, arguments: Sequence) {
+  var ann = new Target!Annotation;
+  ann.name = name;
+  ann.arguments = arguments;
+  return ann;
+}
+
+operation annotationArgument(name: String, e: Target!Expression) {
+  var arg = new Target!AnnotationArgument;
+  arg.name = name;
+  arg.expression = e;
+  return arg;
+}
+
+operation lambdaExpression(statements: Sequence) {
+  var lmb = new Target!LambdaExpression;
+  lmb.statements = statements;
+  return lmb;
 }

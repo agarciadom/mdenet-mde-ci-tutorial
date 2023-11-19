@@ -22,6 +22,16 @@ rule StateMachine2JavaClass
   invoke.arguments.add(parameterReference(tp));
 }
 
+rule StateMachine2JavaTestClass
+  transform sm: Source!StateMachine
+  to jc: Target!JavaClass
+{
+  jc.name = sm.name + 'Test';
+  jc.isTest = true;
+
+  jc.methods.addAll(sm.testCases.collect(e | e.equivalent()));
+}
+
 @abstract
 rule State2Method
   transform s : Source!State
@@ -124,4 +134,51 @@ rule CharacterRangeTransition
     gte(variableReference(tr.~cDeclaration), characterConstant(tr.characterRange.charAt(0).toString())),
     lte(variableReference(tr.~cDeclaration), characterConstant(tr.characterRange.charAt(2).toString()))
   );
+}
+
+@abstract
+rule TestCase2Method
+  transform tc: Source!TestCase
+  to testMethod: Target!Method
+{
+  var methodToTest = tc.eContainer.equivalents('StateMachine2JavaClass').selectOne(e | e.isKindOf(Target!Method));
+  var invocation = new Target!MethodInvocation;
+  invocation.context = newInstance(tc.eContainer.equivalent('StateMachine2JavaClass').name, Sequence {});
+  invocation.methodByRef = methodToTest;
+  invocation.arguments.add(stringConstant(tc.text));
+
+  testMethod.statements.add(invocation);
+}
+
+rule Accept2Method
+  transform tc: Source!Accepts
+  to testMethod: Target!Method
+  extends TestCase2Method
+{
+  testMethod.setTestMethod('accepts' + tc.text.ftuc(), Sequence {});
+}
+
+rule Rejects2Method
+  transform tc: Source!Rejects
+  to testMethod: Target!Method
+  extends TestCase2Method
+{
+  testMethod.setTestMethod('rejects' + tc.text.ftuc(), Sequence {});
+
+  // Wrap the generated invocation in an assertThrows call
+  var invocation = testMethod.statements.first;
+  testMethod.statements.clear();
+  testMethod.statements.add(methodInvocation(null,
+    'org.junit.jupiter.api.Assertions.assertThrows',
+    Sequence {
+      propertyInvocation(typeReference('IllegalStateException'), 'class'),
+      lambdaExpression(Sequence { invocation })
+    }
+  ));
+}
+
+operation Target!Method setTestMethod(name: String, annotationArguments: Sequence) {
+  self.name = name;
+  self.visibility = Target!MethodVisibility#PUBLIC;
+  self.annotations.add(annotation('org.junit.jupiter.api.Test', annotationArguments));
 }

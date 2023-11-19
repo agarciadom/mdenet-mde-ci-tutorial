@@ -1,8 +1,4 @@
 <?nsuri stm?>
-<!--
-A state machine with four states A, B, C and DE
-and transitions among them
--->
 <machine name="ABBAMachine" initialState="FirstA">
     <state name="FirstA"/>
     <state name="B"/>
@@ -11,4 +7,11 @@ and transitions among them
     <transition from="FirstA" to="B" char="B"/>
     <transition from="B" to="B" char="B-Z"/>
     <transition from="B" to="LastA" char="A"/>
+
+    <accepts text="A" />
+    <accepts text="ABA" />
+    <accepts text="ABZBA" />
+
+    <rejects text="X" />
+    <rejects text="AAA" />
 </machine>
