@@ -14,14 +14,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Validate model
-        uses: agarciadom/epsilon-ci-action@v1
+        uses: committed-consulting/epsilon-ci-action@v2
         with:
           target: validate
       - name: Transform to MiniJava
-        uses: agarciadom/epsilon-ci-action@v1
+        uses: committed-consulting/epsilon-ci-action@v2
         with:
           target: transform
       - name: Generate Java
-        uses: agarciadom/epsilon-ci-action@v1
+        uses: committed-consulting/epsilon-ci-action@v2
         with:
           target: generate
+      - name: Gradle Build Action
+        uses: gradle/gradle-build-action@v2.9.0
+        with:
+          build-root-directory: gradle
+          arguments: build
