@@ -190,9 +190,10 @@
             "parameters": {
               "emfatic": "panel-smm",
               "flexmi": "panel-smodel",
-              "program": "panel-egl"
+              "program": "panel-egx",
+              "secondProgram": "panel-egl"
             },
-            "source": "panel-egl",
+            "source": "panel-egx",
             "sourceButton": "action-button"
           },
           {
@@ -223,9 +224,12 @@
               "panel-output"
             ],
             [
-              "panel-console",
+              "panel-egx",
               "panel-smm",
               "panel-diagram"
+            ],
+            [
+              "panel-console"
             ]
           ]
         },
@@ -235,6 +239,12 @@
             "id": "panel-egl",
             "name": "MiniJava to Java (EGL)",
             "ref": "egl"
+          },
+          {
+            "file": "epsilon/minijava-to-java.egx",
+            "id": "panel-egx",
+            "name": "MiniJava to Java (EGX)",
+            "ref": "egx"
           },
           {
             "file": "models/minijava-example.flexmi",
