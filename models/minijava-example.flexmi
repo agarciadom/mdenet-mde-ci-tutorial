@@ -1,2 +1,9 @@
 <?nsuri miniJava?>
-<class name="HelloWorld" />
+<_>
+  <javaFile basename="HelloWorld.java" package="org.mdenet">
+    <class name="HelloWorld" />
+  </javaFile>
+  <javaFile basename="HelloWorldTest.java" package="org.mdenet" isTest="true">
+    <class name="HelloWorldTest" />
+  </javaFile>
+</_>

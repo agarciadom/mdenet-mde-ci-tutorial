@@ -261,7 +261,7 @@
           {
             "id": "panel-output",
             "name": "Generated Code",
-            "ref": "code"
+            "ref": "multicode"
           },
           {
             "id": "panel-console",
