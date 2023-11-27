@@ -58,7 +58,7 @@ rule StateMachine2JavaClass
   tp.name = 'text';
 
   processMethod.statements.add(invoke);
-  invoke.methodByRef = sm.initialState.equivalent().selectOne(e|e.isKindOf(Target!Method));
+  invoke.methodByRef = sm.initialState.equivalent();
   invoke.arguments.add(parameterReference(tp));
 }
 
@@ -149,8 +149,9 @@ rule TransitionToStatement
   transform tr: Source!Transition
   to ifStmt: Target!IfStatement, methodInvocation: Target!MethodInvocation, retStmt: Target!ReturnStatement
 {
-  var cDeclaration = tr.from.equivalents().selectOne(e | e.isKindOf(Target!VariableDeclaration) and e.name = 'c');
-  var restDeclaration = tr.from.equivalents().selectOne(e | e.isKindOf(Target!VariableDeclaration) and e.name = 'rest');
+  var fromVars = tr.from.equivalents().select(e | e.isKindOf(Target!VariableDeclaration));
+  var cDeclaration = fromVars.selectOne(e | e.name = 'c');
+  var restDeclaration = fromVars.selectOne(e | e.name = 'rest');
 
   tr.~cDeclaration = cDeclaration;
   tr.~restDeclaration = restDeclaration;
