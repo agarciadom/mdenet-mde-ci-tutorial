@@ -4,6 +4,7 @@
         "actions": [
           {
             "output": "panel-problems",
+            "outputConsole": "panel-console",
             "parameters": {
               "emfatic": "panel-mm",
               "flexmi": "panel-model",
@@ -90,6 +91,7 @@
         "actions": [
           {
             "output": "panel-tmodel",
+            "outputConsole": "panel-console",
             "parameters": {
               "emfatic": "panel-smm",
               "flexmi": "panel-smodel",
@@ -186,6 +188,7 @@
         "actions": [
           {
             "output": "panel-output",
+            "outputConsole": "panel-console",
             "outputType": "code",
             "parameters": {
               "emfatic": "panel-smm",
@@ -238,7 +241,15 @@
             "file": "epsilon/minijava-to-java.egl",
             "id": "panel-egl",
             "name": "MiniJava to Java (EGL)",
-            "ref": "egl"
+            "ref": "egl",
+            "buttons": [
+              {
+                "id": "help-button",
+                "icon": "info",
+                "url": "https://www.eclipse.org/epsilon/doc/egl/",
+                "hint": "EGL Language Reference"
+              }
+            ]
           },
           {
             "file": "epsilon/minijava-to-java.egx",
@@ -275,6 +286,63 @@
           }
         ],
         "title": "Generate Java Code",
+        "tools": [
+          "http://127.0.0.1:8010/tools"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "output": "panel-output",
+            "outputType": "code",
+            "outputConsole": "panel-console",
+            "parameters": {
+              "program": "panel-egl",
+              "json": "panel-json"
+            },
+            "source": "panel-egl",
+            "sourceButton": "action-button"
+          }
+        ],
+        "icon": "egl",
+        "id": "egl-github",
+        "layout": {
+          "area": [
+            [
+              "panel-egl",
+              "panel-json",
+              "panel-output"
+            ],
+            [
+              "panel-console"
+            ]
+          ]
+        },
+        "panels": [
+          {
+            "file": "epsilon/issues-to-relnotes.egl",
+            "id": "panel-egl",
+            "name": "GitHub JSON to Markdown (EGL)",
+            "ref": "egl"
+          },
+          {
+            "file": "models/issues.json",
+            "id": "panel-json",
+            "name": "GitHub Issues JSON",
+            "ref": "json"
+          },
+          {
+            "id": "panel-output",
+            "name": "Generated Code",
+            "ref": "code"
+          },
+          {
+            "id": "panel-console",
+            "name": "Console",
+            "ref": "console"
+          }
+        ],
+        "title": "Generate Release Notes",
         "tools": [
           "http://127.0.0.1:8010/tools"
         ]
