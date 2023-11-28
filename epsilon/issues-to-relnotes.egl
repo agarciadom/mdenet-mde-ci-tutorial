@@ -1,0 +1,18 @@
+[%
+
+var issuesByLabel = Issues.root
+  .reject(issue | issue.pull_request.isDefined())
+  .mapBy(issue | issue.labels.get(0).name);
+
+%]
+
+# Closed issues in Epsilon 2.5.0
+
+[% for (label in issuesByLabel.keySet().sortBy(e | e)) { %]
+## [%=label.ftuc()%]
+
+[% for (issue in issuesByLabel.get(label).sortBy(issue | issue.title)) { %]
+- [%=issue.title%] ([#[%=issue.number%]]([%=issue.html_url%]))
+[% } %]
+
+[% } %]
