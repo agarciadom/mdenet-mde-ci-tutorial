@@ -1,6 +1,6 @@
 [%
 
-var issuesByLabel = Issues.root
+var issuesByLabel = M.root
   .reject(issue | issue.pull_request.isDefined())
   .mapBy(issue | issue.labels.get(0).name);
 
