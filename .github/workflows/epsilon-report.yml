@@ -3,6 +3,7 @@ name: Weekly Epsilon 2.5.0 report
 on:
   schedule:
     - cron: '5 4 * * 1'
+  workflow_dispatch:
 
 jobs:
   build:
