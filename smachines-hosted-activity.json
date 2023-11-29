@@ -84,7 +84,7 @@
         ],
         "title": "Validate State Machine",
         "tools": [
-          "http://65.21.58.5:8080/tools"
+          "https://epsilon.mde-network.org/tools"
         ]
       },
       {
@@ -181,7 +181,7 @@
         ],
         "title": "Transform to MiniJava",
         "tools": [
-          "http://65.21.58.5:8080/tools"
+          "https://epsilon.mde-network.org/tools"
         ]
       },
       {
@@ -287,7 +287,7 @@
         ],
         "title": "Generate Java Code",
         "tools": [
-          "http://65.21.58.5:8080/tools"
+          "https://epsilon.mde-network.org/tools"
         ]
       },
       {
@@ -344,7 +344,7 @@
         ],
         "title": "Generate Release Notes",
         "tools": [
-          "http://65.21.58.5:8080/tools"
+          "https://epsilon.mde-network.org/tools"
         ]
       }
     ]
