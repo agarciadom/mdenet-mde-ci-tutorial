@@ -8,9 +8,7 @@ To try out the transformations in this example in the MDENet Education Platform 
 
 ### From private clone
 
-To work on the transformations from your own private clone, follow [this link](https://educationplatform.mde-network.org/?activitiesFromReferrer=/main/smachines-hosted-activity.json&privaterepo=true) from this README page.
-
-Alternatively, use the URL below, replacing the URL to the raw version of your `smachines-hosted-activity.json` file:
+To work on the transformations from your own private clone, use the URL template below, replacing the URL to the raw version of your `smachines-hosted-activity.json` file:
 
 ```
 https://educationplatform.mde-network.org/?activities=[raw URL to your own smachines-hosted-activity.json]&privaterepo=true
