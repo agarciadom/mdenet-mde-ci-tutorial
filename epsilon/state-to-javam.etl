@@ -185,8 +185,9 @@ rule CharacterRangeTransition
   );
 }
 
-rule Accept2Method
-  transform tc: Source!Accepts
+@abstract
+rule TestCase2Method
+  transform tc: Source!TestCase
   to testMethod: Target!Method
 {
   var methodToTest = tc.eContainer.equivalents('StateMachine2JavaClass').selectOne(e | e.isKindOf(Target!Method));
@@ -196,20 +197,21 @@ rule Accept2Method
   invocation.arguments.add(stringConstant(tc.text));
 
   testMethod.statements.add(invocation);
+}
+
+rule Accept2Method
+  transform tc: Source!Accepts
+  to testMethod: Target!Method
+  extends TestCase2Method
+{
   testMethod.setTestMethod('accepts' + tc.text.ftuc(), Sequence {});
 }
 
 rule Rejects2Method
   transform tc: Source!Rejects
   to testMethod: Target!Method
+  extends TestCase2Method
 {
-  var methodToTest = tc.eContainer.equivalents('StateMachine2JavaClass').selectOne(e | e.isKindOf(Target!Method));
-  var invocation = new Target!MethodInvocation;
-  invocation.context = newInstance(tc.eContainer.equivalent('StateMachine2JavaClass').name, Sequence {});
-  invocation.methodByRef = methodToTest;
-  invocation.arguments.add(stringConstant(tc.text));
-
-  testMethod.statements.add(invocation);
   testMethod.setTestMethod('rejects' + tc.text.ftuc(), Sequence {});
 
   // Wrap the generated invocation in an assertThrows call
