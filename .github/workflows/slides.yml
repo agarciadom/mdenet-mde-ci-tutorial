@@ -1,0 +1,20 @@
+name: Build slides
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: pandoc/core:3.1
+      volumes:
+        - /github/workspace:/data
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate HTML with Pandoc
+        run: mkdir _site && pandoc -t revealjs -f slides/mde-ci-slides.md -o _site/index.html
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1
