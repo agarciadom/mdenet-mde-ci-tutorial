@@ -1,5 +1,9 @@
 # How to run this example
 
+## From the MDENet Education Platform
+
+Follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json) to try out the transformations in this example in the MDENet Education Platform.
+
 ## With Eclipse
 
 - Download and install [Epsilon's Eclipse development tools](https://eclipse.org/epsilon/download)
