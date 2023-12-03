@@ -58,7 +58,7 @@
 			<epsilon.emf.loadModel name="StateMachine"
 				modelfile="models/state-machine.flexmi"
 				metamodelfile="metamodels/state-machines.emf"
-				read="true" store="false" />
+				read="true" store="false" concurrent="true" />
 		</sequential>
 	</macrodef>
 
@@ -69,7 +69,7 @@
 			<epsilon.emf.loadModel name="MiniJava"
 				modelfile="models/state-machine-java.xmi"
 				metamodelfile="metamodels/mini-java.emf"
-				read="@{read}" store="@{store}" />
+				read="@{read}" store="@{store}" concurrent="true" />
 		</sequential>
 	</macrodef>
 
