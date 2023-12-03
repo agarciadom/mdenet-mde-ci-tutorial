@@ -1,10 +1,21 @@
-# How to run this example
+# Template project for model management in CI pipelines
 
-## From the MDENet Education Platform
+This is an example project that shows how to use the [Epsilon CI Docker Image](https://gitlab.com/committed-consulting/mde-devops/epsilon-ci-container) from Committed Consulting to build continuous integration pipelines that include automated model validations and transformations with [Eclipse Epsilon](https://eclipse.org/epsilon).
+
+The work on the Epsilon CI Docker image was partly funded by an [EPSRC MDENet](https://www.mde-network.org/) commissioning fund grant.
+
+The project includes four example Epsilon programs:
+
+* An [EVL](https://eclipse.dev/epsilon/doc/evl/) script which validates a state machine model.
+* An [ETL](https://eclipse.dev/epsilon/doc/etl/) script which transforms the state machine model into a Java abstract syntax model.
+* A combination of [EGX](https://eclipse.dev/epsilon/doc/articles/egx-parameters/) and [EGL](https://eclipse.dev/epsilon/doc/egl/) scripts which generate the code and the tests from the Java abstract syntax model.
+* An EGL script which takes the JSON from the Github issues API, and produces candidate release notes for Epsilon 2.5.0.
+
+## Running from the MDENet Education Platform
 
 ### From public template
 
-To try out the transformations in this example in the MDENet Education Platform in read-only mode, follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
+To try out the transformations in the MDENet Education Platform, follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
 
 ### From private clone
 
@@ -18,7 +29,7 @@ Next, visit the URL according to the template below, replacing the URL to the ra
 https://educationplatform.mde-network.org/?activities=[raw URL to your own smachines-hosted-activity.json]&privaterepo=true
 ```
 
-## With Eclipse
+## Running from Eclipse
 
 - Download and install [Epsilon's Eclipse development tools](https://eclipse.org/epsilon/download)
 - Import this project into Eclipse using the `File` -> `Import` -> `Existing Projects into Workspace` wizard
@@ -33,12 +44,10 @@ cd gradle
 ./gradlew build
 ```
 
-## With Docker
+## Running from Docker
 
 If you have [Docker](https://docs.docker.com/engine/install/) installed, run this command:
 
 ```shell
 ./run-build.sh
 ```
-
-This uses the [Epsilon CI Docker Image](https://gitlab.com/committed-consulting/mde-devops/epsilon-ci-container) from Committed Consulting.
