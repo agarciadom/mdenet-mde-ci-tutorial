@@ -11,6 +11,8 @@ The project includes four example Epsilon programs:
 * A combination of [EGX](https://eclipse.dev/epsilon/doc/articles/egx-parameters/) and [EGL](https://eclipse.dev/epsilon/doc/egl/) scripts which generate the code and the tests from the Java abstract syntax model.
 * An EGL script which takes the JSON from the Github issues API, and produces candidate release notes for Epsilon 2.5.0.
 
+The project also includes some supporting [`slides`](slides), transformed by [Pandoc](https://pandoc.org/) from Markdown to HTML (using [reveal.js](https://revealjs.com/)).
+
 ## Running from the MDENet Education Platform
 
 ### From public template
