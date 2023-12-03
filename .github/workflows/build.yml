@@ -13,47 +13,29 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # Validate: execution + workspace log
+      # Validate
       - name: Validate model
         id: validate
         uses: committed-consulting/epsilon-ci-action@v2
         with:
           target: validate
-      - name: Upload Validate Workspace Log
-        uses: actions/upload-artifact@v3.1.3
-        if: ${{ !cancelled() && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure') }}
-        with:
-          name: validate-workspace-log
-          path: workspace/.metadata/.log
-      # Transform: execution + workspace log + resulting model
+      # Transform: execution + resulting model
       - name: Transform to MiniJava
         uses: committed-consulting/epsilon-ci-action@v2
         id: transform
         with:
           target: transform
-      - name: Upload Transform Workspace Log
-        uses: actions/upload-artifact@v3.1.3
-        if: ${{ !cancelled() && (steps.transform.outcome == 'success' || steps.transform.outcome == 'failure') }}
-        with:
-          name: transform-workspace-log
-          path: workspace/.metadata/.log
       - name: Upload MiniJava Model
         uses: actions/upload-artifact@v3.1.3
         with:
           name: state-machine-java-model
           path: models/state-machine-java.xmi
-      # Code generation: execution + workspace log + resulting model
+      # Code generation: execution + resulting Gradle project
       - name: Generate Java
         uses: committed-consulting/epsilon-ci-action@v2
         id: generate
         with:
           target: generate
-      - name: Upload Generate Workspace Log
-        uses: actions/upload-artifact@v3.1.3
-        if: ${{ !cancelled() && (steps.generate.outcome == 'success' || steps.generate.outcome == 'failure') }}
-        with:
-          name: generate-workspace-log
-          path: workspace/.metadata/.log
       - name: Upload completed Gradle project
         uses: actions/upload-artifact@v3.1.3
         with:
