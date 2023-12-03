@@ -4,7 +4,9 @@
 
 To try out the transformations in this example in the MDENet Education Platform in read-only mode, follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
 
-To work on the transformations from your own clone, use this URL template, replacing the URL to the raw version of your `smachines-hosted-activity.json` file:
+To work on the transformations from your own clone, use this URL template, follow [this link](https://educationplatform.mde-network.org/?activitiesFromReferrer=/main/smachines-hosted-activity.json)) from this README page.
+
+Alternatively, use the URL below, replacing the URL to the raw version of your `smachines-hosted-activity.json` file:
 
 ```
 https://educationplatform.mde-network.org/?activities=[raw URL to your own smachines-hosted-activity.json]&privaterepo=true
