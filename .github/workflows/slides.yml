@@ -15,6 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Generate HTML with Pandoc
-        run: mkdir _site && pandoc -t revealjs -f slides/mde-ci-slides.md -o _site/index.html
+        run: mkdir _site && pandoc -t revealjs -s slides/mde-ci-slides.md -o _site/index.html
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1
