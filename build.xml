@@ -19,7 +19,9 @@
 		<loadStateMachine />
 		<loadMiniJava read="false" store="true" />
 
-		<epsilon.etl src="epsilon/state-to-javam.etl">
+		<!-- Note: investigate issues with Docker + -\-cpus 2 with EtlModuleParallel -->
+		<epsilon.etl src="epsilon/state-to-javam.etl"
+		             moduleImplementation="org.eclipse.epsilon.etl.EtlModule">
 			<model ref="StateMachine" as="Source" />
 			<model ref="MiniJava" as="Target" />
 		</epsilon.etl>
