@@ -10,7 +10,7 @@ To try out the transformations in this example in the MDENet Education Platform 
 
 To work on the transformations from your own private clone (which allows for saving as well), follow these steps.
 
-First, install [the MDENet demo app on it](https://github.com/apps/mdenet-education-platform-demo-app) into your private clone.
+First, ensure [the MDENet demo app on it](https://github.com/apps/mdenet-education-platform-demo-app) is installed into your private clone. If you are using Github Classroom, your teacher may have pre-installed it into the organisation they set up for the classroom.
 
 Next, visit the URL according to the template below, replacing the URL to the raw version of your `smachines-hosted-activity.json` file (while removing the square brackets):
 
