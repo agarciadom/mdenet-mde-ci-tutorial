@@ -2,7 +2,13 @@
 
 ## From the MDENet Education Platform
 
-Follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json) to try out the transformations in this example in the MDENet Education Platform.
+To try out the transformations in this example in the MDENet Education Platform in read-only mode, follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
+
+To work on the transformations from your own clone, use this URL template, replacing the URL to the raw version of your `smachines-hosted-activity.json` file:
+
+```
+https://educationplatform.mde-network.org/?activities=[raw URL to your own smachines-hosted-activity.json]&privaterepo=true
+```
 
 ## With Eclipse
 
