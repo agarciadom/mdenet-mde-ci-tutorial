@@ -21,7 +21,7 @@ jobs:
           target: validate
       - name: Upload Validate Workspace Log
         uses: actions/upload-artifact@v3.1.3
-        if: steps.validate.outcome == 'success' || steps.validate.outcome == 'failure'
+        if: ${{ !cancelled() && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure') }}
         with:
           name: validate-workspace-log
           path: /github/workspace/workspace/.metadata/.log
@@ -33,7 +33,7 @@ jobs:
           target: transform
       - name: Upload Transform Workspace Log
         uses: actions/upload-artifact@v3.1.3
-        if: steps.transform.outcome == 'success' || steps.transform.outcome == 'failure'
+        if: ${{ !cancelled() && (steps.transform.outcome == 'success' || steps.transform.outcome == 'failure') }}
         with:
           name: transform-workspace-log
           path: /github/workspace/workspace/.metadata/.log
@@ -50,7 +50,7 @@ jobs:
           target: generate
       - name: Upload Generate Workspace Log
         uses: actions/upload-artifact@v3.1.3
-        if: steps.generate.outcome == 'success' || steps.generate.outcome == 'failure'
+        if: ${{ !cancelled() && (steps.generate.outcome == 'success' || steps.generate.outcome == 'failure') }}
         with:
           name: generate-workspace-log
           path: /github/workspace/workspace/.metadata/.log
