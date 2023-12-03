@@ -12,7 +12,7 @@
 			<model ref="StateMachine" />
 		</epsilon.evl>
 
-		<epsilon.disposeModel model="StateMachine" />
+		<epsilon.disposeModels />
 	</target>
 
 	<target name="transform">
@@ -24,8 +24,7 @@
 			<model ref="MiniJava" as="Target" />
 		</epsilon.etl>
 
-		<epsilon.disposeModel model="StateMachine" />
-		<epsilon.disposeModel model="MiniJava" />
+		<epsilon.disposeModels />
 	</target>
 
 	<target name="generate">
@@ -35,7 +34,7 @@
 			<model ref="MiniJava" />
 		</epsilon.egl>
 
-		<epsilon.disposeModel model="MiniJava" />
+		<epsilon.disposeModels />
 	</target>
 
 	<target name="generateEpsilonMilestoneReport">
@@ -51,7 +50,7 @@
 			<model ref="M"/>
 		</epsilon.egl>
 
-		<epsilon.disposeModel model="M" />
+		<epsilon.disposeModels />
 	</target>
 
 	<macrodef name="loadStateMachine">
