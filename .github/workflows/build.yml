@@ -24,7 +24,7 @@ jobs:
         if: ${{ !cancelled() && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure') }}
         with:
           name: validate-workspace-log
-          path: /github/workspace/workspace/.metadata/.log
+          path: workspace/.metadata/.log
       # Transform: execution + workspace log + resulting model
       - name: Transform to MiniJava
         uses: committed-consulting/epsilon-ci-action@v2
@@ -36,7 +36,7 @@ jobs:
         if: ${{ !cancelled() && (steps.transform.outcome == 'success' || steps.transform.outcome == 'failure') }}
         with:
           name: transform-workspace-log
-          path: /github/workspace/workspace/.metadata/.log
+          path: workspace/.metadata/.log
       - name: Upload MiniJava Model
         uses: actions/upload-artifact@v3.1.3
         with:
@@ -53,7 +53,7 @@ jobs:
         if: ${{ !cancelled() && (steps.generate.outcome == 'success' || steps.generate.outcome == 'failure') }}
         with:
           name: generate-workspace-log
-          path: /github/workspace/workspace/.metadata/.log
+          path: workspace/.metadata/.log
       - name: Upload completed Gradle project
         uses: actions/upload-artifact@v3.1.3
         with:
