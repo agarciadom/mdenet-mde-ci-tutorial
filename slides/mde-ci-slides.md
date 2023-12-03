@@ -33,12 +33,12 @@
 
 * Automating CI processes around code is well supported, but not so much when you have models
 * You need to validate, transform, and distribute your models, and those models may produce artifacts needing their own CI
-* You may also treat CI information as a model, and combine it with other models to make decisions
+* You may also treat CI information as a model
 * This is what we will cover in this tutorial!
 
 # From models to Gradle, in CI
 
-## Base code for this tutorial
+## Resources for this tutorial
 
 * We have created [a model-driven pipeline](https://github.com/agarciadom/mdenet-mde-ci-tutorial) that:
   * Validates a model of state machine + tests
@@ -65,7 +65,7 @@
 ## Epsilon CI Docker image
 
 * As part of an MDENet commissioning fund project, we created a [Docker image](https://gitlab.com/committed-consulting/mde-devops/epsilon-ci-container) of a headless Eclipse with [Epsilon](https://eclipse.org/epsilon) preinstalled in it
-* The image is directly usable from Gitlab, and we have created a [GitHub Action](https://github.com/committed-consulting/epsilon-ci-action) to run it from GitLab
+* The image is directly usable from GitLab, and we have created a [GitHub Action](https://github.com/committed-consulting/epsilon-ci-action) to run it from GitHub
 * The `Dockerfile` is based on standard update sites and features: easier than Eclipse products (see [recent PR](https://gitlab.com/committed-consulting/mde-devops/epsilon-ci-container/-/merge_requests/6) adding YAML/JSON for Epsilon)
 
 ## Ant buildfile
@@ -88,6 +88,8 @@ with:
   target: main
 ```
 
+* We use some predefined actions to upload artifacts and run Gradle
+
 # Using CI info as models
 
 ## API responses are models
@@ -100,9 +102,22 @@ with:
 ## MDE-based release notes
 
 * The repository has an [EGL script](https://github.com/agarciadom/mdenet-mde-ci-tutorial/blob/main/epsilon/issues-to-relnotes.egl) producing release notes for Epsilon 2.5.0 by querying GitHub's API
-  * We also have an [MDENet EP activity]([activity](https://educationplatform.mde-network.org/?egl-github&activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json)) for it, if you want to try it out
+  * We also have an [MDENet EP activity](https://educationplatform.mde-network.org/?egl-github&activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json) for it, if you want to try it out
 * The script is run with our image, using its own [Github Actions workflow](https://github.com/agarciadom/mdenet-mde-ci-tutorial/blob/main/.github/workflows/epsilon-report.yml)
   * The workflow uses the GHA action to run the EGL script, and then uploads the result as a build output so it can be easily accessed later
+
+## Alternative triggers
+
+* The example workflow does not trigger on pushes
+* Instead, it runs manually and on a schedule
+  ```text
+  on:
+    schedule:
+      - cron: '5 4 * * 1'
+    workflow_dispatch:
+  ```
+* The [GitHub docs](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) document other options
+* One example is `repository_dispatch`, which allows external systems to trigger builds
 
 ## More advanced scenarios
 
@@ -116,7 +131,7 @@ with:
 
 * Just like code, models can and should go through CI
 * We have demonstrated a Docker image that can run Eclipse-based model management workflows
-* We can also try out each stage in the pipeline through from our browser, with the MDENet Education Platform
+* We can also try out each stage in the pipeline from our browser, with the MDENet Education Platform
 * We have shown a model-to-code pipeline, and the use of CI information as a model
 
 ## Thank you!
