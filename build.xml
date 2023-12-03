@@ -44,6 +44,7 @@
 			<parameter name="header1" value="X-GitHub-Api-Version: 2022-11-28" />
 			<parameter name="readOnLoad" value="true" />
 			<parameter name="storeOnDisposal" value="false" />
+			<parameter name="concurrent" value="true" />
 		</epsilon.loadModel>
 
 		<epsilon.egl src="epsilon/issues-to-relnotes.egl" target="RELEASE_NOTES.md">
