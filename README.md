@@ -27,7 +27,7 @@ First, ensure [the MDENet demo app on it](https://github.com/apps/mdenet-educati
 
 Next, fork the project as usual (whether through the "Fork" button or by accepting a Github Classroom assignment), and wait for the [workflow that updates this README](workflows/update-privaterepo-link.yml) to run.
 
-Finally, visit [this link](https://educationplatform.mde-network.org/?activities=[automatically replaced by fork workflow]&privaterepo=true).
+Finally, visit [this link](https://educationplatform.mde-network.org/?activities=automatically replaced by fork workflow&privaterepo=true).
 
 ## Running from Eclipse
 
