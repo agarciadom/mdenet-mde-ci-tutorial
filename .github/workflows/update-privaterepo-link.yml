@@ -1,5 +1,5 @@
 name: Update privaterepo in README
-on: create
+on: [create, workflow_dispatch]
 
 jobs:
   update-readme:
