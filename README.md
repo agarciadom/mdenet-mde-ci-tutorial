@@ -25,11 +25,9 @@ To work on the transformations from your own private clone (which allows for sav
 
 First, ensure [the MDENet demo app on it](https://github.com/apps/mdenet-education-platform-demo-app) is installed into your private clone. If you are using Github Classroom, your teacher may have pre-installed it into the organisation they set up for the classroom.
 
-Next, visit the URL according to the template below, replacing the URL to the raw version of your `smachines-hosted-activity.json` file (while removing the square brackets):
+Next, fork the project as usual (whether through the "Fork" button or by accepting a Github Classroom assignment), and wait for the [workflow that updates this README](workflows/update-privaterepo-link.yml) to run.
 
-```
-https://educationplatform.mde-network.org/?activities=[raw URL to your own smachines-hosted-activity.json]&privaterepo=true
-```
+Finally, visit [this link](https://educationplatform.mde-network.org/?activities=[automatically replaced by fork workflow]&privaterepo=true).
 
 ## Running from Eclipse
 
