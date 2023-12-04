@@ -11,6 +11,7 @@ on:
 jobs:
   pandoc-build:
     runs-on: ubuntu-latest
+    if: github.repository == 'agarciadom/mdenet-mde-ci-tutorial'    
     container:
       image: pandoc/core:3.1-ubuntu
       volumes:
@@ -30,6 +31,7 @@ jobs:
       pages: write
       id-token: write
     runs-on: ubuntu-latest
+    if: github.repository == 'agarciadom/mdenet-mde-ci-tutorial'    
     needs: pandoc-build
     environment:
       name: github-pages
