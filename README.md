@@ -19,6 +19,9 @@ The project also includes some supporting [`slides`](slides), transformed by [Pa
 
 To try out the transformations in the MDENet Education Platform, follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
 
+If you would like to deploy the Education Platform yourself, the source code is [available on Github](https://github.com/mdenet/educationplatform).
+The activities in this repository use the Epsilon tool functions for the Education Platform in [this repository](https://github.com/epsilonlabs/playground-micronaut/).
+
 ### From Github Classroom assignment (read/write)
 
 To work on the transformations from your Github Classrooms assignment, use the invite link from your teacher and accept the assignment.
