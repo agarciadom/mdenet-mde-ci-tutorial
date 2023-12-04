@@ -15,19 +15,26 @@ The project also includes some supporting [`slides`](slides), transformed by [Pa
 
 ## Running from the MDENet Education Platform
 
-### From public template
+### From public template (read only)
 
 To try out the transformations in the MDENet Education Platform, follow [this link](https://educationplatform.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
 
-### From private clone
+### From Github Classroom assignment (read/write)
 
-To work on the transformations from your own private clone (which allows for saving as well), follow these steps.
+To work on the transformations from your Github Classrooms assignment, use the invite link from your teacher and accept the assignment.
+Your teacher should have preinstalled [the MDENet demo app](https://github.com/apps/mdenet-education-platform-demo-app) into the Github organisation for your course.
 
-First, ensure [the MDENet demo app on it](https://github.com/apps/mdenet-education-platform-demo-app) is installed into your private clone. If you are using Github Classroom, your teacher may have pre-installed it into the organisation they set up for the classroom.
+Github will create a new repository for you, and run a [workflow that updates some of the links in this README](.github/workflows/update-privaterepo-link.yml).
 
-Next, fork the project as usual (whether through the "Fork" button or by accepting a Github Classroom assignment), and wait for the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml) to run.
+Once the workflow has updated the README, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
-Finally, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
+### From private fork (read/write)
+
+To work on the transformations from your private fork, ensure [the MDENet demo app](https://github.com/apps/mdenet-education-platform-demo-app) is installed into it.
+
+Enable Github Actions in your fork, and run manually the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml).
+
+Once the README has been updated, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
 ## Running from Eclipse
 
