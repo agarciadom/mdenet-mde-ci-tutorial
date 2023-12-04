@@ -25,7 +25,7 @@ To work on the transformations from your own private clone (which allows for sav
 
 First, ensure [the MDENet demo app on it](https://github.com/apps/mdenet-education-platform-demo-app) is installed into your private clone. If you are using Github Classroom, your teacher may have pre-installed it into the organisation they set up for the classroom.
 
-Next, fork the project as usual (whether through the "Fork" button or by accepting a Github Classroom assignment), and wait for the [workflow that updates this README](workflows/update-privaterepo-link.yml) to run.
+Next, fork the project as usual (whether through the "Fork" button or by accepting a Github Classroom assignment), and wait for the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml) to run.
 
 Finally, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
