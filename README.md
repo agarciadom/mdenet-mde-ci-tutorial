@@ -28,11 +28,13 @@ Github will create a new repository for you, and run a [workflow that updates so
 
 Once the workflow has updated the README, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
-### From private fork (read/write)
+### From private repository (read/write)
 
-To work on the transformations from your private fork, ensure [the MDENet demo app](https://github.com/apps/mdenet-education-platform-demo-app) is installed into it.
+Click on the "Use this template" button above, and use it to create your own private repository from this template.
 
-Enable Github Actions in your fork, and run manually the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml).
+Install [the MDENet demo app](https://github.com/apps/mdenet-education-platform-demo-app) into your new repository.
+
+Github will automatically run the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml).
 
 Once the README has been updated, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
