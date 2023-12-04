@@ -1,0 +1,12 @@
+name: Update privaterepo on fork
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: sed -ri "s#(https://educationplatform.mde-network.org/\?activities=)(.*)(&privaterepo=true)#\1https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF_NAME}/smachines-hosted-activity.json\3#" README.md && git diff
