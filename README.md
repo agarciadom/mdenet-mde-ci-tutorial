@@ -29,7 +29,7 @@ Your teacher should have preinstalled [the MDENet demo app](https://github.com/a
 
 Github will create a new repository for you, and run a [workflow that updates some of the links in this README](.github/workflows/update-privaterepo-link.yml).
 
-Once the workflow has updated the README, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
+Once the workflow has updated the README, visit [this link](https://mdenet-ep.sites.er.kcl.ac.uk/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
 ### From private repository (read/write)
 
@@ -39,7 +39,7 @@ Install [the MDENet demo app](https://github.com/apps/mdenet-education-platform-
 
 Github will automatically run the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml).
 
-Once the README has been updated, visit [this link](https://educationplatform.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
+Once the README has been updated, visit [this link](https://mdenet-ep.sites.er.kcl.ac.uk/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
 ## Running from Eclipse
 
