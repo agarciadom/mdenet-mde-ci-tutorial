@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Update link in README
-        run: sed -ri "s#(https://mdenet-ep.sites.er.kcl.ac.uk/\?activities=)(.*)(&privaterepo=true)#\1https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF_NAME}/smachines-hosted-activity.json\3#" README.md
+        run: sed -ri "s#(https://ep.mde-network.org/\?activities=)(.*)(&privaterepo=true)#\1https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF_NAME}/smachines-hosted-activity.json\3#" README.md
       - name: Commit changes to README
         run: |
           git config --global user.name 'update-privaterepo-link workflow'

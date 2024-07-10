@@ -17,7 +17,7 @@ The project also includes some supporting [`slides`](slides), transformed by [Pa
 
 ### From public template (read only)
 
-To try out the transformations in the MDENet Education Platform, follow [this link](https://mdenet-ep.sites.er.kcl.ac.uk/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
+To try out the transformations in the MDENet Education Platform, follow [this link](https://ep.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json).
 
 If you would like to deploy the Education Platform yourself, the source code is [available on Github](https://github.com/mdenet/educationplatform).
 The activities in this repository use the Epsilon tool functions for the Education Platform in [this repository](https://github.com/epsilonlabs/playground-micronaut/).
@@ -29,7 +29,7 @@ Your teacher should have preinstalled [the MDENet demo app](https://github.com/a
 
 Github will create a new repository for you, and run a [workflow that updates some of the links in this README](.github/workflows/update-privaterepo-link.yml).
 
-Once the workflow has updated the README, visit [this link](https://mdenet-ep.sites.er.kcl.ac.uk/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
+Once the workflow has updated the README, visit [this link](https://ep.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
 ### From private repository (read/write)
 
@@ -39,7 +39,7 @@ Install [the MDENet demo app](https://github.com/apps/mdenet-education-platform-
 
 Github will automatically run the [workflow that updates this README](.github/workflows/update-privaterepo-link.yml).
 
-Once the README has been updated, visit [this link](https://mdenet-ep.sites.er.kcl.ac.uk/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
+Once the README has been updated, visit [this link](https://ep.mde-network.org/?activities=automatically_replaced_by_fork_workflow&privaterepo=true).
 
 ## Running from Eclipse
 

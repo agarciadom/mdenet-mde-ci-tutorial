@@ -44,7 +44,7 @@
   * Validates a model of state machine + tests
   * Transforms it into a Java model
   * Turns the Java model into a Gradle project
-* Let's go over it with the [MDENet Education Platform](https://mdenet-ep.sites.er.kcl.ac.uk/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json)
+* Let's go over it with the [MDENet Education Platform](https://ep.mde-network.org/?activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json)
 
 ## What would CI look like for this project?
 
@@ -102,7 +102,7 @@ with:
 ## MDE-based release notes
 
 * The repository has an [EGL script](https://github.com/agarciadom/mdenet-mde-ci-tutorial/blob/main/epsilon/issues-to-relnotes.egl) producing release notes for Epsilon 2.5.0 by querying GitHub's API
-  * We also have an [MDENet EP activity](https://mdenet-ep.sites.er.kcl.ac.uk/?egl-github&activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json) for it, if you want to try it out
+  * We also have an [MDENet EP activity](https://ep.mde-network.org/?egl-github&activities=https://raw.githubusercontent.com/agarciadom/mdenet-mde-ci-tutorial/main/smachines-hosted-activity.json) for it, if you want to try it out
 * The script is run with our image, using its own [Github Actions workflow](https://github.com/agarciadom/mdenet-mde-ci-tutorial/blob/main/.github/workflows/epsilon-report.yml)
   * The workflow uses the GHA action to run the EGL script, and then uploads the result as a build output so it can be easily accessed later
 
