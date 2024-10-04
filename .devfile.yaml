@@ -1,0 +1,7 @@
+ schemaVersion: 2.3.0
+ metadata:
+   name: mdenet-mde-ci-tutorial
+components:
+  - name: dev-tooling
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
